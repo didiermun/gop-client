@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {MatIconModule} from '@angular/material/icon';
 import { RCardComponent } from './components/r-card/r-card.component';
 import { HomeComponent } from './components/home/home.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
