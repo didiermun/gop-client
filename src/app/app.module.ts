@@ -8,13 +8,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {MatIconModule} from '@angular/material/icon';
+import { RCardComponent } from './components/r-card/r-card.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
     SidebarComponent,
-    ProfileComponent
+    ProfileComponent,
+    RCardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
