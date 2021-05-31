@@ -13,6 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { MyReportsComponent } from './components/my-reports/my-reports.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {MatButtonModule} from '@angular/material/button';
     SidebarComponent,
     ProfileComponent,
     RCardComponent,
-    HomeComponent
+    HomeComponent,
+    BookmarksComponent,
+    MyReportsComponent
   ],
   imports: [
     BrowserModule,
