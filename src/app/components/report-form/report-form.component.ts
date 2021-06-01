@@ -8,7 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ReportFormComponent implements OnInit {
 
-  isLinear = false;
+  isLinear = true;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
 

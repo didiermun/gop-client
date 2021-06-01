@@ -3,18 +3,61 @@
         <p class="text-center text-xl font-bold text-[#4183C4]">New Report</p>
     </div>
     <div class="px-4 my-2 pt-4">
-        <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-          </button>
           <mat-vertical-stepper [linear]="isLinear" #stepper>
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name</ng-template>
-                <mat-form-field>
-                  <mat-label>Name</mat-label>
-                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                <ng-template matStepLabel>Basic Info</ng-template>
+                <div class="grid grid-cols-6 gap-4">
+                <mat-form-field class="col-span-2">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-                <div>
+                <mat-form-field class="col-span-2">
+                    <mat-label>Start Time</mat-label>
+                    <input matInput [ngxTimepicker]="starttime" required>
+                    <ngx-material-timepicker #starttime></ngx-material-timepicker>
+                </mat-form-field>
+                <mat-form-field class="col-span-2">
+                    <mat-label>End Time</mat-label>
+                    <input matInput [ngxTimepicker]="endtime" required>
+                    <ngx-material-timepicker #endtime></ngx-material-timepicker>
+                </mat-form-field>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="grid grid-cols-6 gap-2 mt-4">
+                    <div class="col-span-4 border-r-2 border-gray-400 pr-2">
+                        <div class="grid grid-cols-6 gap-2">
+                         <mat-form-field class="col-span-3">
+                            <mat-label>Group Name</mat-label>
+                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                         </mat-form-field>
+                         <mat-form-field class="col-span-3">
+                            <mat-label>None Habituated</mat-label>
+                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                          </mat-form-field>
+                        </div>
+                        <p class="text-lg text-gray-600">Group exit point</p>
+                        <mat-form-field class="w-full">
+                            <mat-label>Location</mat-label>
+                            <input type="tel" matInput placeholder="555-555-1234">
+                          </mat-form-field>
+                    </div>
+                    <div class="cols-span-2">
+                        <mat-form-field >
+                            <mat-label>Number of Individuals</mat-label>
+                            <input matInput  formControlName="firstCtrl" required>
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Number of Individuals outside the park</mat-label>
+                            <input matInput  formControlName="firstCtrl" required>
+                        </mat-form-field>
+                    </div>
+                    
+                    
+                </div>
+                <div class="mt-4">
                   <button mat-button matStepperNext>Next</button>
                 </div>
               </form>
