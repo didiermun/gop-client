@@ -4,11 +4,15 @@ import {DefaultLayoutComponent} from './layouts/default-layout/default-layout.co
 import {HomeComponent} from './components/home/home.component'
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { MyReportsComponent } from './components/my-reports/my-reports.component';
+import { ReportFormComponent } from './components/report-form/report-form.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 const routes: Routes = [{path:'',component:DefaultLayoutComponent,children:[
    {path: 'reports',component:HomeComponent},
    {path: 'bookmarks', component:BookmarksComponent},
    {path: 'mine-gops',component: MyReportsComponent},
+   {path: 'new-gop',component: ReportFormComponent},
+   {path: 'stats',component:StatsComponent},
    { path: '',   redirectTo: '/reports', pathMatch: 'full' },
 ]}];
 

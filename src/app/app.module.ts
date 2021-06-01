@@ -15,6 +15,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { MyReportsComponent } from './components/my-reports/my-reports.component';
+import { ReportFormComponent } from './components/report-form/report-form.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MyReportsComponent } from './components/my-reports/my-reports.component
     RCardComponent,
     HomeComponent,
     BookmarksComponent,
-    MyReportsComponent
+    MyReportsComponent,
+    ReportFormComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
