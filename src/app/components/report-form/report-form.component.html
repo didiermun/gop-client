@@ -98,7 +98,7 @@
                                      [matChipInputAddOnBlur]="addOnBlur"
                                      (matChipInputTokenEnd)="add($event)">
                             </mat-chip-list>
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                     <div class="col-span-3">
                         <p class="font-semibold">Resting</p> 
@@ -133,6 +133,95 @@
                 </div>
               </form>
             </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>INTERACTION WITH HUMANS AND LIVE STOCK</ng-template>
+                <div class="grid grid-cols-6 gap-2">
+                    <div class="col-span-6">
+                        <div class="w-full">
+                            <span class="py-2">Distance from Gorillas</span>
+                            <div class="example-list-section">
+                                  <span *ngFor="let subtask of task.subtasks"  class="mx-4">
+                                    <mat-checkbox 
+                                                  [color]="subtask.color"
+                                                  (ngModelChange)="updateAllComplete()">
+                                      {{subtask.name}}
+                                    </mat-checkbox>
+                                  </span>
+                            </div>
+                        </div>
+                        <div class="w-full flex flex-col mt-4">
+                            <span class="py-2">Reacton from Gorillas</span>
+                            <div>
+                                  <span *ngFor="let subtask of task.subtasks" class="mx-4">
+                                    <mat-checkbox 
+                                                  [color]="subtask.color"
+                                                  (ngModelChange)="updateAllComplete()">
+                                      {{subtask.name}}
+                                    </mat-checkbox>
+                                  </span>
+                            </div>
+                        </div>
+                        <div class="w-full flex flex-col mt-4">
+                            <span class="py-2">Observation from human Object</span>
+                            <div>
+                                  <span *ngFor="let subtask of task.subtasks" class="mx-4">
+                                    <mat-checkbox 
+                                                  [color]="subtask.color"
+                                                  (ngModelChange)="updateAllComplete()">
+                                      {{subtask.name}}
+                                    </mat-checkbox>
+                                  </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>TOURISM ACTIVITIES</ng-template>
+                <div class="flex flex-col">
+                    <div class="mt-4">
+                        <div class="grid grid-cols-6 gap-2">
+                         <div class="flex flex-col col-span-3" >
+                            <span>Number of tourists:</span>
+                            <mat-form-field >
+                                <input matInput   required>
+                            </mat-form-field>
+                         </div>
+                         <div class="flex flex-col col-span-3" >
+                            <span>Period of visit outside the park:</span>
+                            <mat-form-field >
+                                <input matInput   required>
+                            </mat-form-field>
+                         </div>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>Any unusual behaviour during tourism visit(separate with comma or enter):</span>
+                            <mat-form-field class="example-chip-list">
+                                <mat-chip-list #chipList aria-label="Fruit selection">
+                                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                                           [removable]="removable" (removed)="remove(fruit)">
+                                    {{fruit.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                  </mat-chip>
+                                  <input placeholder="type to add..."
+                                         [matChipInputFor]="chipList"
+                                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                         [matChipInputAddOnBlur]="addOnBlur"
+                                         (matChipInputTokenEnd)="add($event)">
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </mat-step>
             <mat-step>
               <ng-template matStepLabel>Done</ng-template>
               <p>You are now done.</p>
