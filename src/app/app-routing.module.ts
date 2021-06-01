@@ -6,9 +6,10 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { MyReportsComponent } from './components/my-reports/my-reports.component';
 
 const routes: Routes = [{path:'',component:DefaultLayoutComponent,children:[
-   {path: '',component:HomeComponent},
+   {path: 'reports',component:HomeComponent},
    {path: 'bookmarks', component:BookmarksComponent},
-   {path: 'my-gops',component: MyReportsComponent}
+   {path: 'mine-gops',component: MyReportsComponent},
+   { path: '',   redirectTo: '/reports', pathMatch: 'full' },
 ]}];
 
 @NgModule({
