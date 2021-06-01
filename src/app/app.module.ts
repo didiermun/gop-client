@@ -17,6 +17,10 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { MyReportsComponent } from './components/my-reports/my-reports.component';
 import { ReportFormComponent } from './components/report-form/report-form.component';
 import { StatsComponent } from './components/stats/stats.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,12 @@ import { StatsComponent } from './components/stats/stats.component';
     MatIconModule,
     MatDividerModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
