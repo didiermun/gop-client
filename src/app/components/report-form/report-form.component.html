@@ -222,6 +222,46 @@
                   <button mat-button matStepperNext>Next</button>
                 </div>
               </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>GORILLA HEALTH</ng-template>
+                <div class="my-4">
+                    <div class="w-full mt-4">
+                        <span class="py-2">Any Sick Gorilla?</span>
+                        <div class="example-list-section">
+                              <span *ngFor="let subtask of task.subtasks"  class="mx-4">
+                                <mat-checkbox 
+                                              [color]="subtask.color"
+                                              (ngModelChange)="updateAllComplete()">
+                                  {{subtask.name}}
+                                </mat-checkbox>
+                              </span>
+                        </div>
+                    </div>
+                    <div class="w-full mt-4">
+                        <span class="py-2 font-semibold">What signs?</span>
+                        <div class="example-list-section">
+                              <span *ngFor="let subtask of task.subtasks"  class="mx-4">
+                                <mat-checkbox 
+                                              [color]="subtask.color"
+                                              (ngModelChange)="updateAllComplete()">
+                                  {{subtask.name}}
+                                </mat-checkbox>
+                              </span>
+                              <span *ngFor="let subtask of task.subtasks"  class="mx-4">
+                                <mat-checkbox 
+                                              [color]="subtask.color"
+                                              (ngModelChange)="updateAllComplete()">
+                                  {{subtask.name}}
+                                </mat-checkbox>
+                              </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </mat-step>
             <mat-step>
               <ng-template matStepLabel>Done</ng-template>
               <p>You are now done.</p>
