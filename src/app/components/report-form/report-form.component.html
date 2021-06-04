@@ -7,19 +7,19 @@
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>BASIC INFO</ng-template>
-                <div class="grid grid-cols-6 gap-4">
-                <mat-form-field class="col-span-2">
+                <div class="grid grid-cols-6 gap-4 mt-4">
+                <mat-form-field class="col-span-6 sm:col-span-3 md:col-span-2">
                     <mat-label>Choose a date</mat-label>
                     <input matInput [matDatepicker]="picker" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-                <mat-form-field class="col-span-2">
+                <mat-form-field class="col-span-6 sm:col-span-3 md:col-span-2">
                     <mat-label>Start Time</mat-label>
                     <input matInput [ngxTimepicker]="starttime" required>
                     <ngx-material-timepicker #starttime></ngx-material-timepicker>
                 </mat-form-field>
-                <mat-form-field class="col-span-2">
+                <mat-form-field class="col-span-6 sm:col-span-3 md:col-span-2">
                     <mat-label>End Time</mat-label>
                     <input matInput [ngxTimepicker]="endtime" required>
                     <ngx-material-timepicker #endtime></ngx-material-timepicker>
@@ -29,11 +29,11 @@
                 <div class="grid grid-cols-6 gap-2 mt-4">
                     <div class="col-span-6">
                         <div class="grid grid-cols-6 gap-2">
-                         <mat-form-field class="col-span-3">
+                         <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>Group Name</mat-label>
                             <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
                          </mat-form-field>
-                         <mat-form-field class="col-span-3">
+                         <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>None Habituated</mat-label>
                             <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
                           </mat-form-field>
@@ -45,11 +45,11 @@
                         </mat-form-field>
                     </div>
                     <div class="col-span-6 grid grid-cols-6 gap-2">
-                        <mat-form-field class="col-span-3">
+                        <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>Number of Individuals</mat-label>
                             <input matInput  formControlName="firstCtrl" required>
                         </mat-form-field>
-                        <mat-form-field class="col-span-3">
+                        <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>Number of Individuals outside the park</mat-label>
                             <input matInput  formControlName="firstCtrl" required>
                         </mat-form-field>
@@ -71,8 +71,8 @@
                   <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
                          required>
                 </mat-form-field> -->
-                <div class="grid grid-cols-6 gap-4">
-                    <div class="col-span-3">
+                <div class="grid grid-cols-6 gap-4 mt-4">
+                    <div class="col-span-6 md:col-span-3">
                         <p class="font-semibold">Feeding</p>
                         <span class="example-list-section">
                             <ul>
@@ -85,7 +85,7 @@
                               </li>
                             </ul>
                         </span>
-                        <mat-form-field class="example-chip-list">
+                        <mat-form-field class="w-full my-4">
                             <mat-label>Other species</mat-label>
                             <mat-chip-list #chipList aria-label="Fruit selection">
                               <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
@@ -101,7 +101,7 @@
                             </mat-chip-list>
                         </mat-form-field>
                     </div>
-                    <div class="col-span-3">
+                    <div class="col-span-6 md:col-span-3">
                         <p class="font-semibold">Resting</p> 
                         <div class="flex flex-col">
                             <span>- Distance from the park</span>
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="mt-4">
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button matStepperNext>Next</button>
                 </div>
@@ -136,11 +136,11 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>INTERACTION WITH HUMANS AND LIVE STOCK</ng-template>
-                <div class="grid grid-cols-6 gap-2">
+                <div class="grid grid-cols-6 gap-2 mt-4">
                     <div class="col-span-6">
-                        <div class="w-full">
-                            <span class="py-2">Distance from Gorillas</span>
-                            <div class="example-list-section">
+                        <div class="w-full bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                            <span class="font-semibold">Distance from Gorillas</span>
+                            <div class="w-full mt-2">
                                   <span *ngFor="let subtask of task.subtasks"  class="mx-4">
                                     <mat-checkbox 
                                                   [color]="subtask.color"
@@ -150,9 +150,9 @@
                                   </span>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col mt-4">
-                            <span class="py-2">Reacton from Gorillas</span>
-                            <div>
+                        <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                            <span class="font-semibold">Reacton from Gorillas</span>
+                            <div class="w-full mt-2">
                                   <span *ngFor="let subtask of task.subtasks" class="mx-4">
                                     <mat-checkbox 
                                                   [color]="subtask.color"
@@ -162,9 +162,9 @@
                                   </span>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col mt-4">
-                            <span class="py-2">Observation from human Object</span>
-                            <div>
+                        <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                            <span class="font-semibold">Observation from human Object</span>
+                            <div class="w-full mt-2">
                                   <span *ngFor="let subtask of task.subtasks" class="mx-4">
                                     <mat-checkbox 
                                                   [color]="subtask.color"
@@ -176,23 +176,23 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="mt-4">
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button matStepperNext>Next</button>
                 </div>
               </mat-step>
               <mat-step>
                 <ng-template matStepLabel>TOURISM ACTIVITIES</ng-template>
-                <div class="flex flex-col">
+                <div class="flex flex-col mt-4">
                     <div class="mt-4">
                         <div class="grid grid-cols-6 gap-2">
-                         <div class="flex flex-col col-span-3" >
+                         <div class="flex flex-col col-span-6 md:col-span-3" >
                             <span>Number of tourists:</span>
                             <mat-form-field >
                                 <input matInput   required>
                             </mat-form-field>
                          </div>
-                         <div class="flex flex-col col-span-3" >
+                         <div class="flex flex-col col-span-6 md:col-span-3" >
                             <span>Period of visit outside the park:</span>
                             <mat-form-field >
                                 <input matInput   required>
@@ -218,7 +218,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="mt-4">
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button matStepperNext>Next</button>
                 </div>
@@ -226,9 +226,9 @@
               <mat-step>
                 <ng-template matStepLabel>GORILLA HEALTH</ng-template>
                 <div class="my-4">
-                    <div class="w-full mt-4">
-                        <span class="py-2">Any Sick Gorilla?</span>
-                        <div class="example-list-section">
+                    <div class="w-full bg-[#f9fbff] px-10 py-8 rounded shadow-md mt-4">
+                        <span class="font-semibold">Any Sick Gorilla?</span>
+                        <div class="mt-2">
                               <span *ngFor="let subtask of task.subtasks"  class="mx-4">
                                 <mat-checkbox 
                                               [color]="subtask.color"
@@ -238,9 +238,9 @@
                               </span>
                         </div>
                     </div>
-                    <div class="w-full mt-4">
-                        <span class="py-2 font-semibold">What signs?</span>
-                        <div class="example-list-section">
+                    <div class="w-full mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                        <span class="font-semibold">What signs?</span>
+                        <div class="mt-2">
                               <span *ngFor="let subtask of task.subtasks"  class="mx-4">
                                 <mat-checkbox 
                                               [color]="subtask.color"

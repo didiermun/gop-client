@@ -26,7 +26,7 @@ export class ReportFormComponent implements OnInit {
     color: 'primary',
     subtasks: [
       {name: 'Eucalyptus', completed: false, color: 'primary'},
-      {name: 'Bamboo', completed: false, color: 'accent'},
+      {name: 'Bamboo', completed: false, color: 'primary'},
     ]
   };
 
