@@ -72,5 +72,8 @@ export class ReportFormComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
+  submit() {
+    console.log(this.firstFormGroup.value);
+  }
 
 }
