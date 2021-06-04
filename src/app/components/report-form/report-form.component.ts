@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder,FormArray,FormGroup, Validators, FormControl} from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 export interface Fruit {
+  name: string;
+}
+
+export interface Data{
+  id: number;
   name: string;
 }
 
@@ -13,6 +18,9 @@ export interface Fruit {
 })
 export class ReportFormComponent implements OnInit {
   allComplete: boolean = false;
+
+  feeding: Data[] = [{id: 1,name:"Eucalyptus"},{id: 2,name:"Bamboo"}];
+  // distance: Data[] = ["<50 M","-50-100M",">100M"]
 
   visible = true;
   selectable = true;
@@ -44,10 +52,21 @@ export class ReportFormComponent implements OnInit {
   secondFormGroup!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) { }
+  onChangeEventFunc(name: string, isChecked: boolean) {
+    const cartoons = (this.firstFormGroup.controls.name as FormArray);
+
+    if (isChecked) {
+      cartoons.push(new FormControl(name));
+    } else {
+      const index = cartoons.controls.findIndex(x => x.value === name);
+      cartoons.removeAt(index);
+    }
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.required],
+      name: this._formBuilder.array([])
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
