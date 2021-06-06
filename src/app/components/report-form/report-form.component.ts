@@ -51,22 +51,43 @@ export class ReportFormComponent implements OnInit {
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
-  onChangeEventFunc(name: string, isChecked: boolean) {
-    const cartoons = (this.firstFormGroup.controls.name as FormArray);
+  constructor(private _formBuilder: FormBuilder) {
+    this.toppings = _formBuilder.group({
+      pepperoni: false,
+      extracheese: false,
+      mushroom: false
+    });
+   }
 
-    if (isChecked) {
-      cartoons.push(new FormControl(name));
+  toppings: FormGroup;
+
+  onCbChange(e:any) {
+    const name: FormArray = this.firstFormGroup.get('name') as FormArray;
+
+    if (e.target.checked) {
+      name.push(new FormControl(e.target.value));
     } else {
-      const index = cartoons.controls.findIndex(x => x.value === name);
-      cartoons.removeAt(index);
+      let i: number = 0;
+      name.controls.forEach((item) => {
+        if (item.value == e.target.value) {
+          name.removeAt(i);
+          return;
+        }
+        i++;
+      });
     }
-  }
-
+ }
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-      name: this._formBuilder.array([])
+      date: ['', Validators.required],
+      starttime: ['', Validators.required],
+      endtime: ['', Validators.required],
+      group: ['', Validators.required],
+      none_habits: ['', Validators.required],
+      location: ['', Validators.required],
+      nIndividuals: [, Validators.required,],
+      nOutIndividuals: [, Validators.required,],
+      time: this._formBuilder.array([], [Validators.required])
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
