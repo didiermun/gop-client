@@ -152,9 +152,9 @@
               <ng-template matStepLabel>INTERACTION WITH HUMANS AND LIVE STOCK</ng-template>
               <div class="grid grid-cols-6 gap-2 mt-4">
                   <div class="col-span-6">
-                      <div class="w-full bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                      <div class="w-full px-10 py-4 rounded border-b">
                           <span class="font-semibold">Distance from Gorillas</span>
-                          <div class="mt-1">
+                          <div class="mt-4">
                           <mat-radio-group
                                    aria-labelledby="example-radio-group-label"
                                    class="grid grid-cols-6 gap-2"
@@ -165,29 +165,21 @@
                           </mat-radio-group>
                         </div>
                       </div>
-                       <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                       <div class="w-full mt-4  px-10 py-4 rounded border-b">
                           <span class="font-semibold">Reacton from Gorillas</span>
-                          <section class="example-section grid grid-cols-6 gap-2">
+                          <section class="example-section grid grid-cols-6 gap-2 mt-4">
                             <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="runningReaction">Bamboo</mat-checkbox></p>
                             <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="chargingReaction">Eucalyptus</mat-checkbox></p>
                           </section>
                       </div>
-                      <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                      <div class="w-full flex flex-col mt-4 px-10 py-4 rounded border-b">
                         <span class="font-semibold">Observation from Human Objects</span>
-                        <section class="example-section grid grid-cols-6 gap-2">
+                        <section class="example-section grid grid-cols-6 gap-2 mt-4">
                           <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="dungObservation" >Dung</mat-checkbox></p>
                           <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="clothingObservation">Clothes</mat-checkbox></p>
                           <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="hutObservation">Hut</mat-checkbox></p>
                         </section>
                     </div>
-                      <!--
-                      <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
-                          <span class="font-semibold">Observation from human Object</span>
-                          <section class="example-section" [formGroup]="feeding">
-                            <p><mat-checkbox formControlName="bamboo">Bamboo</mat-checkbox></p>
-                            <p><mat-checkbox formControlName="eucalyptus">Eucalyptus</mat-checkbox></p>
-                          </section>
-                      </div> -->
                   </div>
               </div>
               <div class="mt-4">
