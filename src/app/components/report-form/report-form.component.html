@@ -101,7 +101,7 @@
                             <mat-label>Other species</mat-label>
                             <mat-chip-list #chipList aria-label="Fruit selection">
                               <mat-chip *ngFor="let fruit of secondFormGroup.value.species" [selectable]="selectable"
-                                       [removable]="removable" (removed)="remove(fruit)">
+                                       [removable]="removable" (removed)="remove(fruit,2)">
                                 {{fruit.name}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                               </mat-chip>
@@ -109,7 +109,7 @@
                                      [matChipInputFor]="chipList"
                                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                      [matChipInputAddOnBlur]="addOnBlur"
-                                     (matChipInputTokenEnd)="add($event)">
+                                     (matChipInputTokenEnd)="add($event,2)">
                             </mat-chip-list>
                         </mat-form-field>
                     </div>
@@ -180,6 +180,23 @@
                           <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="hutObservation">Hut</mat-checkbox></p>
                         </section>
                     </div>
+                    <div class="w-full flex flex-col mt-4 px-10 py-4 rounded border-b">
+                        <span>Any unusual behaviour during tourism visit(separate with comma or enter):</span>
+                        <mat-form-field class="example-chip-list">
+                            <mat-chip-list #chipList aria-label="Fruit selection">
+                              <mat-chip *ngFor="let fruit of thirdFormGroup.value.behavior" [selectable]="selectable"
+                                       [removable]="removable" (removed)="remove(fruit,3)">
+                                {{fruit.name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                              </mat-chip>
+                              <input placeholder="type to add..."
+                                     [matChipInputFor]="chipList"
+                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                     [matChipInputAddOnBlur]="addOnBlur"
+                                     (matChipInputTokenEnd)="add($event,3)">
+                            </mat-chip-list>
+                        </mat-form-field>
+                  </div>
                   </div>
               </div>
               <div class="mt-4">
@@ -188,8 +205,85 @@
               </div>
             </form>
             </mat-step>
-
-            
+            <mat-step [stepControl]="forthFormGroup">
+              <form [formGroup]="forthFormGroup">
+              <ng-template matStepLabel>TOURISM ACTIVITIES</ng-template>
+              <div class="flex flex-col mt-4">
+                  <div class="mt-4">
+                      <div class="grid grid-cols-6 gap-2">
+                       <div class="flex flex-col col-span-6 md:col-span-3" >
+                          <span>Number of tourists:</span>
+                          <mat-form-field >
+                              <input type="number" matInput  required formControlName="tourists">
+                          </mat-form-field>
+                       </div>
+                       <div class="flex flex-col col-span-6 md:col-span-3" >
+                          <span>Period of visit outside the park:</span>
+                          <mat-form-field >
+                              <input type="text" matInput formControlName="period"  required>
+                          </mat-form-field>
+                       </div>
+                      </div>
+                      <div class="flex flex-col">
+                          <span>Any unusual behaviour during tourism visit(separate with comma or enter):</span>
+                          <mat-form-field class="example-chip-list">
+                              <mat-chip-list #chipList aria-label="Fruit selection">
+                                <mat-chip *ngFor="let fruit of forthFormGroup.value.behavior" [selectable]="selectable"
+                                         [removable]="removable" (removed)="remove(fruit,42)">
+                                  {{fruit.name}}
+                                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="type to add..."
+                                       [matChipInputFor]="chipList"
+                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                       [matChipInputAddOnBlur]="addOnBlur"
+                                       (matChipInputTokenEnd)="add($event,42)">
+                              </mat-chip-list>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </div>
+              <div class="mt-4">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="submit()"  matStepperNext>Next</button>
+              </div>
+            </form>
+            </mat-step>
+            <mat-step [stepControl]="fifthFormGroup">
+              <form [formGroup]="fifthFormGroup">
+              <ng-template matStepLabel>GORILLA HEALTH</ng-template>
+              <div class="my-4">
+                  <div class="w-full px-10 py-4 rounded border-b mt-4">
+                      <span class="font-semibold">Any Sick Gorilla?</span>
+                      <div class="mt-4">
+                        <mat-radio-group
+                                 aria-labelledby="example-radio-group-label"
+                                 class="grid grid-cols-6 gap-2"
+                                 formControlName="sickfound">
+                                 <mat-radio-button class="col-span-2" *ngFor="let sick of anySick" [value]="sick">
+                                   {{sick}}
+                                 </mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+                     
+                  </div>
+                  <div class="w-full mt-4  px-10 py-4 rounded border-b">
+                      <span class="font-semibold">What signs?</span>
+                      <section class="example-section grid grid-cols-6 gap-2 mt-4">
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="cough" >Dung</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="flu">Clothes</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="injury">Hut</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="limbbroken">Hut</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="diarrhea">Hut</mat-checkbox></p>
+                      </section>
+                  </div>
+              </div>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+            </mat-step>
             <mat-step>
               <ng-template matStepLabel>Done</ng-template>
               <p>You are now done.</p>
