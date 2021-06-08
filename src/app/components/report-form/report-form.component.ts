@@ -22,9 +22,8 @@ export class ReportFormComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  distances: string[] = ['<50M','-50-100M','>100M'];
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  // fruits: Fruit[] = [
-  // ];
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -46,15 +45,28 @@ export class ReportFormComponent implements OnInit {
   isLinear = false;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
+  thirdFormGroup!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {
     this.feeding = _formBuilder.group({
       bamboo: false,
       eucalyptus: false,
     });
+
+    this.reaction = _formBuilder.group({
+      running: false,
+      charging: false,
+    });
+    this.observation = _formBuilder.group({
+      dung: false,
+      clothes: false,
+      hut: false
+    });
    }
 
    feeding: FormGroup;
+   reaction: FormGroup;
+   observation: FormGroup;
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       date: [, Validators.required],
@@ -72,9 +84,17 @@ export class ReportFormComponent implements OnInit {
       distance: ['', Validators.required],
       species: [[], Validators.required],
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      distance: ['', Validators.required],
+      runningReaction:[false, Validators.required],
+      chargingReaction:[false, Validators.required],
+      dungObservation:[false, Validators.required],
+      clothingObservation:[false, Validators.required],
+      hutObservation:[false, Validators.required],
+    })
   }
   submit() {
-    console.log(this.secondFormGroup.value);
+    console.log(this.thirdFormGroup.value);
   }
 
 }

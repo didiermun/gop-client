@@ -26,6 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {MatChipsModule} from '@angular/material/chips';
     NgxMaterialTimepickerModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

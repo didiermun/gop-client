@@ -93,7 +93,6 @@
                               </li>
                             </ul> -->
                              <section class="example-section" [formGroup]="feeding">
-                      <h4>Select your toppings:</h4>
                       <p><mat-checkbox formControlName="bamboo">Bamboo</mat-checkbox></p>
                       <p><mat-checkbox formControlName="eucalyptus">Eucalyptus</mat-checkbox></p>
                     </section>
@@ -148,52 +147,54 @@
               </form>
             </mat-step>
 
-            <mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+              <form [formGroup]="thirdFormGroup">
               <ng-template matStepLabel>INTERACTION WITH HUMANS AND LIVE STOCK</ng-template>
               <div class="grid grid-cols-6 gap-2 mt-4">
                   <div class="col-span-6">
                       <div class="w-full bg-[#f9fbff] px-10 py-8 rounded shadow-md">
                           <span class="font-semibold">Distance from Gorillas</span>
-                          <div class="w-full mt-2">
-                                <span *ngFor="let subtask of task.subtasks"  class="mx-4">
-                                  <mat-checkbox 
-                                                [color]="subtask.color"
-                                                (ngModelChange)="updateAllComplete()">
-                                    {{subtask.name}}
-                                  </mat-checkbox>
-                                </span>
-                          </div>
+                          <div class="mt-1">
+                          <mat-radio-group
+                                   aria-labelledby="example-radio-group-label"
+                                   class="grid grid-cols-6 gap-2"
+                                   formControlName="distance">
+                                   <mat-radio-button class="col-span-2" *ngFor="let distance of distances" [value]="distance">
+                                     {{distance}}
+                                   </mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                       <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                          <span class="font-semibold">Reacton from Gorillas</span>
+                          <section class="example-section grid grid-cols-6 gap-2">
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="runningReaction">Bamboo</mat-checkbox></p>
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="chargingReaction">Eucalyptus</mat-checkbox></p>
+                          </section>
                       </div>
                       <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
-                          <span class="font-semibold">Reacton from Gorillas</span>
-                          <div class="w-full mt-2">
-                                <span *ngFor="let subtask of task.subtasks" class="mx-4">
-                                  <mat-checkbox 
-                                                [color]="subtask.color"
-                                                (ngModelChange)="updateAllComplete()">
-                                    {{subtask.name}}
-                                  </mat-checkbox>
-                                </span>
-                          </div>
-                      </div>
+                        <span class="font-semibold">Observation from Human Objects</span>
+                        <section class="example-section grid grid-cols-6 gap-2">
+                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="dungObservation" >Dung</mat-checkbox></p>
+                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="clothingObservation">Clothes</mat-checkbox></p>
+                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="hutObservation">Hut</mat-checkbox></p>
+                        </section>
+                    </div>
+                      <!--
                       <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
                           <span class="font-semibold">Observation from human Object</span>
-                          <div class="w-full mt-2">
-                                <span *ngFor="let subtask of task.subtasks" class="mx-4">
-                                  <mat-checkbox 
-                                                [color]="subtask.color"
-                                                (ngModelChange)="updateAllComplete()">
-                                    {{subtask.name}}
-                                  </mat-checkbox>
-                                </span>
-                          </div>
-                      </div>
+                          <section class="example-section" [formGroup]="feeding">
+                            <p><mat-checkbox formControlName="bamboo">Bamboo</mat-checkbox></p>
+                            <p><mat-checkbox formControlName="eucalyptus">Eucalyptus</mat-checkbox></p>
+                          </section>
+                      </div> -->
                   </div>
               </div>
               <div class="mt-4">
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button (click)="submit()" matStepperNext>Next</button>
               </div>
+            </form>
             </mat-step>
 
             
