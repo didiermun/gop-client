@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormArray,FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder,FormGroup, Validators, FormControl} from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 export interface Fruit {
@@ -23,24 +23,24 @@ export class ReportFormComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [
-  ];
+  // fruits: Fruit[] = [
+  // ];
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
 
     if (value) {
-      this.fruits.push({name: value});
+      this.secondFormGroup.value.species.push({name: value});
     }
     event.chipInput!.clear();
   }
 
   remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+    const index = this.secondFormGroup.value.species.indexOf(fruit);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.secondFormGroup.value.species.splice(index, 1);
     }
   }
   isLinear = false;
@@ -69,11 +69,12 @@ export class ReportFormComponent implements OnInit {
       village: ['', Validators.required],      
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      distance: ['', Validators.required],
+      species: [[], Validators.required],
     });
   }
   submit() {
-    console.log(this.firstFormGroup.value);
+    console.log(this.secondFormGroup.value);
   }
 
 }

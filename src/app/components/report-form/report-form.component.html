@@ -101,7 +101,7 @@
                         <mat-form-field class="w-full my-4">
                             <mat-label>Other species</mat-label>
                             <mat-chip-list #chipList aria-label="Fruit selection">
-                              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                              <mat-chip *ngFor="let fruit of secondFormGroup.value.species" [selectable]="selectable"
                                        [removable]="removable" (removed)="remove(fruit)">
                                 {{fruit.name}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -127,7 +127,7 @@
                         <div class="flex flex-col" >
                             <span>Distance walked outside of the park:</span>
                             <mat-form-field >
-                                <input matInput  formControlName="secondCtrl" required>
+                                <input matInput  formControlName="distance" required>
                             </mat-form-field>
                         </div>
                     </div>
@@ -142,10 +142,58 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="submit()" matStepperPrevious>Back</button>
                   <button mat-button matStepperNext>Next</button>
                 </div>
               </form>
+            </mat-step>
+
+            <mat-step>
+              <ng-template matStepLabel>INTERACTION WITH HUMANS AND LIVE STOCK</ng-template>
+              <div class="grid grid-cols-6 gap-2 mt-4">
+                  <div class="col-span-6">
+                      <div class="w-full bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                          <span class="font-semibold">Distance from Gorillas</span>
+                          <div class="w-full mt-2">
+                                <span *ngFor="let subtask of task.subtasks"  class="mx-4">
+                                  <mat-checkbox 
+                                                [color]="subtask.color"
+                                                (ngModelChange)="updateAllComplete()">
+                                    {{subtask.name}}
+                                  </mat-checkbox>
+                                </span>
+                          </div>
+                      </div>
+                      <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                          <span class="font-semibold">Reacton from Gorillas</span>
+                          <div class="w-full mt-2">
+                                <span *ngFor="let subtask of task.subtasks" class="mx-4">
+                                  <mat-checkbox 
+                                                [color]="subtask.color"
+                                                (ngModelChange)="updateAllComplete()">
+                                    {{subtask.name}}
+                                  </mat-checkbox>
+                                </span>
+                          </div>
+                      </div>
+                      <div class="w-full flex flex-col mt-4 bg-[#f9fbff] px-10 py-8 rounded shadow-md">
+                          <span class="font-semibold">Observation from human Object</span>
+                          <div class="w-full mt-2">
+                                <span *ngFor="let subtask of task.subtasks" class="mx-4">
+                                  <mat-checkbox 
+                                                [color]="subtask.color"
+                                                (ngModelChange)="updateAllComplete()">
+                                    {{subtask.name}}
+                                  </mat-checkbox>
+                                </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="mt-4">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
             </mat-step>
 
             
