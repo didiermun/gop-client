@@ -93,11 +93,13 @@ export class ReportFormComponent implements OnInit {
       nIndividuals: [, Validators.required,],
       nOutIndividuals: [, Validators.required,],
       distance: [, Validators.required],
-      village: ['', Validators.required],      
+      village: ['', Validators.required],     
     });
     this.secondFormGroup = this._formBuilder.group({
       distance: ['', Validators.required],
       species: [[], Validators.required],
+      bamboo: [false, Validators.required],
+      eucalyptus: [false, Validators.required], 
     });
     this.thirdFormGroup = this._formBuilder.group({
       distance: ['', Validators.required],

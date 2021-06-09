@@ -74,28 +74,14 @@
             <mat-step [stepControl]="secondFormGroup">
               <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>ACTIVITY BUDGET</ng-template>
-                <!-- <mat-form-field>
-                  <mat-label>Address</mat-label>
-                  <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                         required>
-                </mat-form-field> -->
                 <div class="grid grid-cols-6 gap-4 mt-4">
                     <div class="col-span-6 md:col-span-3">
                         <p class="font-semibold">Feeding</p>
                         <span class="example-list-section">
-                            <!-- <ul>
-                              <li *ngFor="let subtask of task.subtasks">
-                                <mat-checkbox 
-                                              [color]="subtask.color"
-                                              (ngModelChange)="updateAllComplete()">
-                                  {{subtask.name}}
-                                </mat-checkbox>
-                              </li>
-                            </ul> -->
-                             <section class="example-section" [formGroup]="feeding">
-                      <p><mat-checkbox formControlName="bamboo">Bamboo</mat-checkbox></p>
-                      <p><mat-checkbox formControlName="eucalyptus">Eucalyptus</mat-checkbox></p>
-                    </section>
+                          <section class="example-section grid grid-cols-6 gap-2 mt-4">
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="eucalyptus" >Eucalyptus</mat-checkbox></p>
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="bamboo">Bamboo</mat-checkbox></p>
+                          </section>
                         </span>
                         <mat-form-field class="w-full my-4">
                             <mat-label>Other species</mat-label>
