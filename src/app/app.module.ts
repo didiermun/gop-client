@@ -27,6 +27,9 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginComponent } from './components/login/login.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
     BookmarksComponent,
     MyReportsComponent,
     ReportFormComponent,
-    StatsComponent
+    StatsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCheckboxModule,
     MatChipsModule,
     MatRadioModule,
+    FlexLayoutModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
