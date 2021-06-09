@@ -10,6 +10,12 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config(
+  $font-family: 'Barlow'
+);
+@include mat-core($custom-typography);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -40,4 +46,4 @@ $gop-client-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Noto Sans KR", "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Barlow","Roboto", "Helvetica Neue", sans-serif; }
