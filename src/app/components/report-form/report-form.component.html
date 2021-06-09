@@ -79,8 +79,8 @@
                         <p class="font-semibold">Feeding</p>
                         <span class="example-list-section">
                           <section class="example-section grid grid-cols-6 gap-2 mt-4">
-                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="eucalyptus" >Eucalyptus</mat-checkbox></p>
-                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="bamboo">Bamboo</mat-checkbox></p>
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="eucalyptus" >Eucalyptus</mat-checkbox></p>
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="bamboo">Bamboo</mat-checkbox></p>
                           </section>
                         </span>
                         <mat-form-field class="w-full my-4">
@@ -145,7 +145,7 @@
                                    aria-labelledby="example-radio-group-label"
                                    class="grid grid-cols-6 gap-2"
                                    formControlName="distance">
-                                   <mat-radio-button class="col-span-2" *ngFor="let distance of distances" [value]="distance">
+                                   <mat-radio-button color="primary" class="col-span-2" *ngFor="let distance of distances" [value]="distance">
                                      {{distance}}
                                    </mat-radio-button>
                           </mat-radio-group>
@@ -154,16 +154,16 @@
                        <div class="w-full mt-4  px-10 py-4 rounded border-b">
                           <span class="font-semibold">Reacton from Gorillas</span>
                           <section class="example-section grid grid-cols-6 gap-2 mt-4">
-                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="runningReaction">Bamboo</mat-checkbox></p>
-                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="chargingReaction">Eucalyptus</mat-checkbox></p>
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="runningReaction">Running</mat-checkbox></p>
+                            <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="chargingReaction">Charging</mat-checkbox></p>
                           </section>
                       </div>
                       <div class="w-full flex flex-col mt-4 px-10 py-4 rounded border-b">
                         <span class="font-semibold">Observation from Human Objects</span>
                         <section class="example-section grid grid-cols-6 gap-2 mt-4">
-                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="dungObservation" >Dung</mat-checkbox></p>
-                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="clothingObservation">Clothes</mat-checkbox></p>
-                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="hutObservation">Hut</mat-checkbox></p>
+                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="dungObservation" >Dung</mat-checkbox></p>
+                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="clothingObservation">Clothes</mat-checkbox></p>
+                          <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="hutObservation">Hut</mat-checkbox></p>
                         </section>
                     </div>
                     <div class="w-full flex flex-col mt-4 px-10 py-4 rounded border-b">
@@ -246,7 +246,7 @@
                                  aria-labelledby="example-radio-group-label"
                                  class="grid grid-cols-6 gap-2"
                                  formControlName="sickfound">
-                                 <mat-radio-button class="col-span-2" *ngFor="let sick of anySick" [value]="sick">
+                                 <mat-radio-button color="primary" class="col-span-2" *ngFor="let sick of anySick" [value]="sick">
                                    {{sick}}
                                  </mat-radio-button>
                         </mat-radio-group>
@@ -256,11 +256,11 @@
                   <div class="w-full mt-4  px-10 py-4 rounded border-b">
                       <span class="font-semibold">What signs?</span>
                       <section class="example-section grid grid-cols-6 gap-2 mt-4">
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="cough" >Dung</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="flu">Clothes</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="injury">Hut</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="limbbroken">Hut</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox formControlName="diarrhea">Hut</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="cough" >Dung</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="flu">Clothes</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="injury">Hut</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="limbbroken">Hut</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="diarrhea">Hut</mat-checkbox></p>
                       </section>
                   </div>
               </div>
