@@ -1,6 +1,6 @@
 <div class="main-home flex flex-col h-screen overflow-y-auto">
-    <div class="border-b border-[#D1DBEF] header py-2">
-        <p class="text-center text-xl font-bold text-[#4183C4]">New Report</p>
+    <div class="border-b border-[#D1DBEF]  py-2 bg-white">
+        <p class="text-center text-xl font-bold text-[#2196F3]">New Report</p>
     </div>
     <div class="px-4 my-2 pt-4">
           <mat-vertical-stepper [linear]="isLinear" #stepper>
@@ -65,8 +65,9 @@
                         </mat-form-field>
                     </div>
                 </div>
+                <mat-divider></mat-divider>
                 <div class="mt-4">
-                  <button mat-button matStepperNext (click)="submit()">Next</button>
+                  <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
                 </div>
               </form>
             </mat-step>
@@ -127,8 +128,8 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                  <button mat-button (click)="submit()" matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
+                  <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
+                  <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
                 </div>
               </form>
             </mat-step>
@@ -186,8 +187,8 @@
                   </div>
               </div>
               <div class="mt-4">
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="submit()" matStepperNext>Next</button>
+                <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
+                <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
               </div>
             </form>
             </mat-step>
@@ -230,8 +231,8 @@
                   </div>
               </div>
               <div class="mt-4">
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="submit()"  matStepperNext>Next</button>
+                <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
+                <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
               </div>
             </form>
             </mat-step>
@@ -265,17 +266,17 @@
                   </div>
               </div>
               <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
+                <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
               </div>
             </form>
             </mat-step>
             <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              <p>You are now done.</p>
+              <ng-template matStepLabel>DONE AND SAVE</ng-template>
+              <p>You have completed the whole report process.</p>
               <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
+                <button (click)="stepper.reset()" class="mx-10 bg-[#5c9dd3] hover:bg-[#2196F3] hover:text-white px-8 py-2 transition-all">Save report</button>
               </div>
             </mat-step>
           </mat-vertical-stepper>
