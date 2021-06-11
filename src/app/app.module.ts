@@ -30,6 +30,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './components/login/login.component';
 import {MatCardModule} from '@angular/material/card';
+import { ReportViewLayoutComponent } from './layouts/report-view-layout/report-view-layout.component';
+import { ReportViewerComponent } from './components/report-viewer/report-viewer.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {MatCardModule} from '@angular/material/card';
     MyReportsComponent,
     ReportFormComponent,
     StatsComponent,
-    LoginComponent
+    LoginComponent,
+    ReportViewLayoutComponent,
+    ReportViewerComponent
   ],
   imports: [
     BrowserModule,

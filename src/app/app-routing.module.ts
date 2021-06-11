@@ -10,6 +10,7 @@ import { LoginComponent} from './components/login/login.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
+  {path: 'report/:report_id',component: ReportFormComponent},
   {path:'',component:DefaultLayoutComponent,
   children:[
    {path: 'reports',component:HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
    { path: '',   redirectTo: '/reports', pathMatch: 'full' },
   ]
  },
+ {path: '**',   redirectTo: '/reports', pathMatch: 'full'}
 ];
 
 @NgModule({
