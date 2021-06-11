@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: '', component: ReportViewLayoutComponent, 
   children:[
     {path: 'report/:report_id',component: ReportViewerComponent},
+    { path: '',   redirectTo: '/reports', pathMatch: 'full' },
   ]},
   {path:'',component:DefaultLayoutComponent,
   children:[
