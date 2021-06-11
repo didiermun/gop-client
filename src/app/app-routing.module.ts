@@ -7,10 +7,15 @@ import { MyReportsComponent } from './components/my-reports/my-reports.component
 import { ReportFormComponent } from './components/report-form/report-form.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { LoginComponent} from './components/login/login.component';
+import {ReportViewerComponent} from './components/report-viewer/report-viewer.component'
+import {ReportViewLayoutComponent} from './layouts/report-view-layout/report-view-layout.component'
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
-  {path: 'report/:report_id',component: ReportFormComponent},
+  {path: '', component: ReportViewLayoutComponent, 
+  children:[
+    {path: 'report/:report_id',component: ReportViewerComponent},
+  ]},
   {path:'',component:DefaultLayoutComponent,
   children:[
    {path: 'reports',component:HomeComponent},
