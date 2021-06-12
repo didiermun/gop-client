@@ -3,7 +3,7 @@
         <p class="text-center text-xl ">Tuesday, 19 April 2021</p>
     </div>
     <mat-divider></mat-divider>
-    <form class="px-2 mx-2 mt-4 shadow-lg rounded bg-white" [formGroup]="newGroupFormGroup">
+    <form class="px-2 mx-2 mt-4 shadow-lg rounded bg-white" [formGroup]="newGroupFormGroup" (ngSubmit)="submit()">
         <p class="uppercase text-xl text-center py-2 font-semibold">New Group</p>
     <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
         <mat-form-field appearance="fill" class="w-full">
@@ -24,7 +24,7 @@
         </mat-form-field>
     </div>
     <div class="grid justify-items-end my-2 ">
-      <button  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-3 transition-all focus:outline-none">Add new Group</button>
+      <button [disabled]="newGroupFormGroup.invalid"  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-3 transition-all focus:outline-none">Add new Group</button>
     </div>
 </form>
 

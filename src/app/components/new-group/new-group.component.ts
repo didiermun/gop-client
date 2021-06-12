@@ -19,4 +19,8 @@ export class NewGroupComponent implements OnInit {
     });
   }
 
+  submit(){
+    console.log(this.newGroupFormGroup.value);
+  }
+
 }
