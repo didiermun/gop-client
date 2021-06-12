@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-new-group',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-group.component.scss']
 })
 export class NewGroupComponent implements OnInit {
+  newGroupFormGroup!: FormGroup;
 
-  constructor() { }
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.newGroupFormGroup = this._formBuilder.group({
+      groupLeader: ['', Validators.required],
+      groupCode: ['', Validators.required],
+      groupPassword: ['', Validators.required]
+    });
   }
 
 }

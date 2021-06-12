@@ -3,16 +3,29 @@
         <p class="text-center text-xl ">Tuesday, 19 April 2021</p>
     </div>
     <mat-divider></mat-divider>
-    <div class="px-2 mx-2 mt-4 shadow-lg rounded bg-white">
+    <form class="px-2 mx-2 mt-4 shadow-lg rounded bg-white" [formGroup]="newGroupFormGroup">
         <p class="uppercase text-xl text-center py-2 font-semibold">New Group</p>
     <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
-        <p>Team Leader</p>
-        <p class="w-full text-center  py-1">Nteziriza Erneste</p>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Group Leader</mat-label>
+            <input matInput placeholder="Peter Richarson" formControlName="groupLeader" required>
+        </mat-form-field>
     </div>
-    <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b ">
-        <p>Team Code</p>
-        <p class="w-full text-center  py-1">****************</p>
+    <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Group Code</mat-label>
+            <input matInput placeholder="RDB2021MKR" formControlName="groupCode" required>
+        </mat-form-field>
     </div>
-</div>
+    <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Group Initial Password</mat-label>
+            <input matInput placeholder="***********" formControlName="groupPassword" required>
+        </mat-form-field>
+    </div>
+    <div class="grid justify-items-end my-2 ">
+      <button  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-3 transition-all focus:outline-none">Add new Group</button>
+    </div>
+</form>
 
 </div>
