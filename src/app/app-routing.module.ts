@@ -9,6 +9,8 @@ import { StatsComponent } from './components/stats/stats.component';
 import { LoginComponent} from './components/login/login.component';
 import {ReportViewerComponent} from './components/report-viewer/report-viewer.component'
 import {ReportViewLayoutComponent} from './layouts/report-view-layout/report-view-layout.component'
+import { GroupLayoutComponent } from './layouts/group-layout/group-layout.component';
+import { GroupsComponent } from './components/groups/groups.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -16,6 +18,9 @@ const routes: Routes = [
   children:[
     {path: 'report/:report_id',component: ReportViewerComponent},
     { path: '',   redirectTo: '/reports', pathMatch: 'full' },
+  ]},
+  {path: '', component: GroupLayoutComponent, children:[
+    {path: 'groups', component: GroupsComponent}
   ]},
   {path:'',component:DefaultLayoutComponent,
   children:[

@@ -32,6 +32,9 @@ import { LoginComponent } from './components/login/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { ReportViewLayoutComponent } from './layouts/report-view-layout/report-view-layout.component';
 import { ReportViewerComponent } from './components/report-viewer/report-viewer.component';
+import { GroupLayoutComponent } from './layouts/group-layout/group-layout.component';
+import { GroupsComponent } from './components/groups/groups.component';
+import { NewGroupComponent } from './components/new-group/new-group.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { ReportViewerComponent } from './components/report-viewer/report-viewer.
     StatsComponent,
     LoginComponent,
     ReportViewLayoutComponent,
-    ReportViewerComponent
+    ReportViewerComponent,
+    GroupLayoutComponent,
+    GroupsComponent,
+    NewGroupComponent
   ],
   imports: [
     BrowserModule,
