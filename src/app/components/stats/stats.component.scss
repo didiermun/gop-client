@@ -1,0 +1,11 @@
+.inner-block{
+    min-height: 92vh;
+}
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
