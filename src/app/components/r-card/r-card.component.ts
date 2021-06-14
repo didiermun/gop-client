@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-r-card',
@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./r-card.component.scss']
 })
 export class RCardComponent implements OnInit {
+  @Input() report: any = {};
 
-  constructor() { }
+  constructor() {
+
+   }
+  
 
   ngOnInit(): void {
   }

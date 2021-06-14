@@ -4,20 +4,12 @@
         <p class="text-center text-xl font-bold text-[#2196F3]">Reports</p>
     </div>
     <div class="px-4 my-2 py-4">
-        <app-r-card></app-r-card>
-        <mat-divider></mat-divider>
-        <app-r-card></app-r-card>
-        <mat-divider></mat-divider>
-        <app-r-card></app-r-card>
-        <mat-divider></mat-divider>
-        <app-r-card></app-r-card>
-        <mat-divider></mat-divider>
-        <app-r-card></app-r-card>
-        <mat-divider></mat-divider>
-        <app-r-card></app-r-card>
-        <mat-divider></mat-divider>
+        <div *ngFor="let report of reports">
+           <app-r-card [report]="report"></app-r-card>
+           <mat-divider></mat-divider>
+        </div>
         <div class="w-full bg-white mt-2 px-2 py-1 rounded flex flex-col items-center mx-auto">
-            <label class="text-center cursor-pointer text-[#2196F3]">Load more</label>
+            <label (click)="loadMore()" class="text-center cursor-pointer text-[#2196F3]">Load more</label>
         </div>
     </div>
    </div>

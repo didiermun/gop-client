@@ -1,13 +1,13 @@
 <div class="card flex flex-col mb-4 px-4 pt-6 mt-4">
     <div class="grid grid-cols-6 gap-2">
-        <p class="col-span-2 font-semibold">Nkundakozera Enock</p>
-        <p  class="col-span-2">Added 6 hours ago</p>
+        <p class="col-span-2 font-semibold">{{report.reporter.leader}}</p>
+        <p  class="col-span-2">Added {{report.timing.date | dateAgo}}</p>
         <p  class="col-span-2 grid justify-items-end cursor-pointer">
             <button mat-icon-button [matMenuTriggerFor]="menu" class="focus:outline-none" aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" class="menuclassed">
-                <button class="focus:outline-none" mat-menu-item routerLink="/report/123">
+                <button class="focus:outline-none" mat-menu-item routerLink="/report/{{report._id}}">
                   <mat-icon>remove_red_eye</mat-icon>
                 </button>
                 <button class="focus:outline-none" mat-menu-item>
@@ -17,19 +17,19 @@
         </p>
     </div>
     <div class="flex flex-col">
-        <p class="text-[#78999E]">Started at 8:00 AM up to 4 PM</p>
+        <p class="text-[#78999E]">Started at {{report.timing.start}} up to {{report.timing.end}}</p>
     </div>
     <div class="flex flex-col  px-4 rounded border">
         <div class="w-full mb-2">
             <span class="font-semibold">Report Info</span>
         </div>
         <div class="grid grid-cols-6">
-            <p class="col-span-3">1. Report on Agashya Group</p>
-            <p class="col-span-3">2. In 40, 18 individuals were outside the park</p>
+            <p class="col-span-3">1. Report on {{report.baseInfo.family}} Group</p>
+            <p class="col-span-3">2. In {{report.baseInfo.individuals}}, {{report.baseInfo.Oindividuals}} individuals were outside the park</p>
         </div>
         <div class="grid grid-cols-6">
-            <p class="col-span-3">3. Gorillas reacted by Running</p>
-            <p class="col-span-3">4. Gorillas were mentioned sick in the report</p>
+            <p class="col-span-3">3. Gorillas reacted by {{report.interaction.reaction}}.</p>
+            <p class="col-span-3">4. <span *ngIf="!report.health.sick"> No</span>Gorillas were mentioned sick in the report</p>
         </div>
     </div>
     <div class="mt-4 grid justify-items-end mb-2">

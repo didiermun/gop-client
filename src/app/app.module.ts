@@ -38,6 +38,7 @@ import { NewGroupComponent } from './components/new-group/new-group.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './services/guards/authGaurd.service';
+import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AuthGuardService } from './services/guards/authGaurd.service';
     ReportViewerComponent,
     GroupLayoutComponent,
     GroupsComponent,
-    NewGroupComponent
+    NewGroupComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
