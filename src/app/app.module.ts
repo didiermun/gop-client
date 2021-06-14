@@ -37,6 +37,7 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { NewGroupComponent } from './components/new-group/new-group.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from './services/guards/authGaurd.service';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,7 @@ import { HttpClientModule } from '@angular/common/http';
     GraphQLModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

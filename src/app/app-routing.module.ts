@@ -11,10 +11,11 @@ import {ReportViewerComponent} from './components/report-viewer/report-viewer.co
 import {ReportViewLayoutComponent} from './layouts/report-view-layout/report-view-layout.component'
 import { GroupLayoutComponent } from './layouts/group-layout/group-layout.component';
 import { GroupsComponent } from './components/groups/groups.component';
+import { AuthGuardService } from './services/guards/authGaurd.service'
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
-  {path: '', component: ReportViewLayoutComponent, 
+  {path: '', component: ReportViewLayoutComponent, canActivate: [AuthGuardService],
   children:[
     {path: 'report/:report_id',component: ReportViewerComponent},
     { path: '',   redirectTo: '/reports', pathMatch: 'full' },
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path: '', component: GroupLayoutComponent, children:[
     {path: 'groups', component: GroupsComponent}
   ]},
-  {path:'',component:DefaultLayoutComponent,
+  {path:'',component:DefaultLayoutComponent, canActivate: [AuthGuardService],
   children:[
    {path: 'reports',component:HomeComponent},
    {path: 'bookmarks', component:BookmarksComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

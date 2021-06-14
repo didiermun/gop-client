@@ -19,12 +19,14 @@ const LOGIN = gql`
 })
 export class LoginComponent implements OnInit {
   loginFormGroup!: FormGroup;
+  error: string = "";
 
   hide: boolean = false;
 
   constructor(private apollo: Apollo,private router: Router,private _formBuilder: FormBuilder) { }
 
   submit(){
+    this.error = "";
     this.apollo.mutate({
       mutation: LOGIN,
       variables: {
@@ -34,16 +36,18 @@ export class LoginComponent implements OnInit {
       let res: any = data;
       console.log(res);
       if(res.login.success){
-        // this.notifier.notify('success', 'Login successful');
-        localStorage.setItem("token",res.login.token)
+        localStorage.setItem("gop_app_token",res.login.token)
         this.router.navigateByUrl("/");
       }
-      else{
-        // this.notifier.notify('error','Code not found');
-      }
     },(error) => {
-      console.log(error);
-      // this.notifier.notify('error', `${error.message}`);
+      if(error.networkError){
+        this.error = "Slow or no internet detected";
+      }
+      else if(error.graphQLErrors){
+        this.error = error.graphQLErrors[0].message;
+      }
+      
+      // this.notifier.notify('error', `${error.}`);
     });
   }
 
