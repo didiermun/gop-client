@@ -35,6 +35,8 @@ import { ReportViewerComponent } from './components/report-viewer/report-viewer.
 import { GroupLayoutComponent } from './layouts/group-layout/group-layout.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { NewGroupComponent } from './components/new-group/new-group.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { NewGroupComponent } from './components/new-group/new-group.component';
     MatRadioModule,
     FlexLayoutModule,
     MatCardModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
