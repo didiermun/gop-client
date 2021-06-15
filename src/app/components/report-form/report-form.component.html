@@ -69,7 +69,7 @@
                 </div>
                 <mat-divider></mat-divider>
                 <div class="mt-4">
-                  <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
+                  <button matStepperNext  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
                 </div>
               </form>
             </mat-step>
@@ -91,7 +91,7 @@
                             <mat-chip-list #chipList aria-label="Fruit selection">
                               <mat-chip *ngFor="let fruit of secondFormGroup.value.species" [selectable]="selectable"
                                        [removable]="removable" (removed)="remove(fruit,2)">
-                                {{fruit.name}}
+                                {{fruit}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                               </mat-chip>
                               <input placeholder="type to add..."
@@ -135,7 +135,7 @@
                 </div>
                 <div class="mt-4">
                   <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
-                  <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
+                  <button matStepperNext class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
                 </div>
               </form>
             </mat-step>
@@ -179,7 +179,7 @@
                             <mat-chip-list #chipList aria-label="Fruit selection">
                               <mat-chip *ngFor="let fruit of thirdFormGroup.value.behaviour" [selectable]="selectable"
                                        [removable]="removable" (removed)="remove(fruit,3)">
-                                {{fruit.name}}
+                                {{fruit}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                               </mat-chip>
                               <input placeholder="type to add..."
@@ -194,7 +194,7 @@
               </div>
               <div class="mt-4">
                 <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
-                <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
+                <button matStepperNext class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
               </div>
             </form>
             </mat-step>
@@ -221,9 +221,9 @@
                           <span>Any unusual behaviour during tourism visit(separate with comma or enter):</span>
                           <mat-form-field class="example-chip-list">
                               <mat-chip-list #chipList aria-label="Fruit selection">
-                                <mat-chip *ngFor="let fruit of forthFormGroup.value.behavior" [selectable]="selectable"
+                                <mat-chip *ngFor="let fruit of forthFormGroup.value.behaviour" [selectable]="selectable"
                                          [removable]="removable" (removed)="remove(fruit,42)">
-                                  {{fruit.name}}
+                                  {{fruit}}
                                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                 </mat-chip>
                                 <input placeholder="type to add..."
@@ -238,7 +238,7 @@
               </div>
               <div class="mt-4">
                 <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
-                <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
+                <button matStepperNext class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
               </div>
             </form>
             </mat-step>
@@ -273,7 +273,7 @@
               </div>
               <div>
                 <button mat-button class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
-                <button matStepperNext (click)="submit()" class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
+                <button matStepperNext class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Next</button>
               </div>
             </form>
             </mat-step>
@@ -281,8 +281,8 @@
               <ng-template matStepLabel>DONE AND SAVE</ng-template>
               <p>You have completed the whole report process.</p>
               <div>
-                <button matStepperPrevious class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
-                <button (click)="stepper.reset()" class="mx-10 bg-[#5c9dd3] hover:bg-[#2196F3] hover:text-white px-8 py-2 transition-all">Save report</button>
+                <button matStepperPrevious  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-2 transition-all">Back</button>
+                <button (click)="submit()" class="mx-10 bg-[#5c9dd3] hover:bg-[#2196F3] hover:text-white px-8 py-2 transition-all">Save report</button>
               </div>
             </mat-step>
           </mat-vertical-stepper>

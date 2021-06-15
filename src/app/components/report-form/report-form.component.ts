@@ -2,9 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder,FormGroup, Validators, FormControl} from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Apollo,gql } from 'apollo-angular';
+import { Router} from '@angular/router';
 export interface Fruit {
   name: string;
 }
+
+const NEW_REPORT = gql`
+  mutation newReport($data: NewReport!) {
+    newReport(data: $data) {
+      id
+    }
+  }
+`;
 
 export interface Data{
   id: number;
@@ -32,13 +42,13 @@ export class ReportFormComponent implements OnInit {
 
     if (value) {
       if(count == 2){
-      this.secondFormGroup.value.species.push({name: value});
+      this.secondFormGroup.value.species.push(value);
     }
     else if(count == 42){
-      this.forthFormGroup.value.behavior.push({name: value});
+      this.forthFormGroup.value.behaviour.push(value);
     }
     else if(count == 3){
-      this.thirdFormGroup.value.behavior.push({name: value});
+      this.thirdFormGroup.value.behaviour.push(value);
     }
     }
     event.chipInput!.clear();
@@ -53,17 +63,17 @@ export class ReportFormComponent implements OnInit {
     }
   }
   else if (count == 42){
-    const index = this.forthFormGroup.value.behavior.indexOf(fruit);
+    const index = this.forthFormGroup.value.behaviour.indexOf(fruit);
 
     if (index >= 0) {
-      this.forthFormGroup.value.behavior.splice(index, 1);
+      this.forthFormGroup.value.behaviour.splice(index, 1);
     }
   }
   else if (count == 3){
-    const index = this.thirdFormGroup.value.behavior.indexOf(fruit);
+    const index = this.thirdFormGroup.value.behaviour.indexOf(fruit);
 
     if (index >= 0) {
-      this.thirdFormGroup.value.behavior.splice(index, 1);
+      this.thirdFormGroup.value.behaviour.splice(index, 1);
     }
   }
   }
@@ -74,7 +84,7 @@ export class ReportFormComponent implements OnInit {
   forthFormGroup!: FormGroup;
   fifthFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder,private apollo: Apollo,private router: Router) {
     this.feeding = _formBuilder.group({
       bamboo: false,
       eucalyptus: false,
@@ -97,7 +107,7 @@ export class ReportFormComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       distance: ['', Validators.required],
-      species: [[], Validators.required],
+      species: [[],],
       bamboo: [false, Validators.required],
       eucalyptus: [false, Validators.required], 
       period: ['', Validators.required],
@@ -109,10 +119,10 @@ export class ReportFormComponent implements OnInit {
       dungObservation:[false, Validators.required],
       clothingObservation:[false, Validators.required],
       hutObservation:[false, Validators.required],
-      behaviour: [[], Validators.required],
+      behaviour: [[],],
     })
     this.forthFormGroup = this._formBuilder.group({
-      behavior: [[], Validators.required],
+      behaviour: [[],],
       tourists: [, Validators.required],
       period: [, Validators.required],
     })
@@ -127,11 +137,18 @@ export class ReportFormComponent implements OnInit {
     })
   }
   submit() {
+    let timing: any ={
+      date: this.firstFormGroup.value.date?.toString(),
+      start: this.firstFormGroup.value.starttime,
+      end: this.firstFormGroup.value.endtime,
+    } 
     let baseInfo: any =this.firstFormGroup.value;
-    baseInfo.date = baseInfo.date.toString();
+    delete baseInfo.date;
+    delete baseInfo.starttime;
+    delete baseInfo.endtime;
     baseInfo.individuals = Math.round(baseInfo.individuals)
     baseInfo.Oindividuals = Math.round(baseInfo.Oindividuals)
-    console.log(baseInfo);
+
 
     //gathering all species
     let species:string[] = [...this.secondFormGroup.value.species]
@@ -142,6 +159,12 @@ export class ReportFormComponent implements OnInit {
       species = [...species,'Eucalyptus']
     }
 
+    let budget = {
+      species: species,
+      distance: this.secondFormGroup.value.distance,
+      period: this.secondFormGroup.value.period,
+    }
+
     // putting together all reactions in the form in third form group
     let reactions:string[] = [];
     if(this.thirdFormGroup.value.runningReaction == true){
@@ -150,7 +173,6 @@ export class ReportFormComponent implements OnInit {
     if(this.thirdFormGroup.value.chargingReaction == true){
       reactions = [...reactions,'Charging']
     }
-    console.log(reactions)
 
 
     //putting together all observations in third form group
@@ -164,6 +186,21 @@ export class ReportFormComponent implements OnInit {
     if(this.thirdFormGroup.value.hutObservation == true){
       observation = [...observation,'Hut']
     }
+
+
+    let interaction = {
+      distance: this.thirdFormGroup.value.distance,
+      reaction: reactions,
+      observation,
+      behaviour: this.thirdFormGroup.value.behaviour
+    }
+
+    let touristActivity:any = {
+      tourist: this.forthFormGroup.value.tourists,
+      period: this.forthFormGroup.value.period,
+      behaviour: this.forthFormGroup.value.behaviour
+    }
+
 
     //gathering all sickness around
 
@@ -183,6 +220,35 @@ export class ReportFormComponent implements OnInit {
     if(this.fifthFormGroup.value.diarrhea == true){
       sickness = [...sickness,'Diarrhea']
     }
+
+    let health:any = {
+      sick: this.fifthFormGroup.value.sick,
+      signs: sickness
+    }
+
+    let data = {timing,baseInfo,budget,interaction,touristActivity,health}
+
+    this.apollo.mutate({
+      mutation: NEW_REPORT,
+      variables: {
+        data: data
+      }
+    }).subscribe(({ data }) => {
+      let res: any = data;
+      console.log(res)
+    },(error) => {
+      console.log(data);
+      console.log(error.networkError)
+      console.log(error.graphQLErrors[0]?.error)
+      if(error.networkError){
+        // this.error = "Slow or no internet detected";
+      }
+      else if(error.graphQLErrors){
+        // this.error = error.graphQLErrors[0].message;
+      }
+      
+      // this.notifier.notify('error', `${error.}`);
+    });
 
   }
 
