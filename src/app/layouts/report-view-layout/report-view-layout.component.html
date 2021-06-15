@@ -1,8 +1,10 @@
-<div class="bg-[#F8F9FC] w-full h-screen overflow-x-hidden grid grid-cols-12 gap-0 sm:px-6 md:px-10 xl:px-16">
-    <div class="col-span-2 md:col-span-1 h-screen border-r px-4 border-[#D1DBEF] grid justify-items-end pt-8">
+<app-header></app-header>
+<div class="bg-[#F8F9FC] w-full gap-0 sm:px-6 md:px-10 xl:px-16 flex flex-wrap">
+    <div class="w-full sm:w-1/7 lg:w-2/12 px-4 border-[#D1DBEF] pt-8 h-full md:sticky top-5">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="col-span-10 md:col-span-10 border-r border-[#D1DBEF]">
+    <div class="w-full md:w-6/7 lg:w-10/12 border-[#D1DBEF]">
         <router-outlet></router-outlet>
     </div>
 </div>
+<app-footer></app-footer>

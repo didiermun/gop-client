@@ -1,0 +1,40 @@
+svg{
+    transition: all 0.2s ease-in-out;
+}
+
+.git{
+    &:hover{
+        svg{
+            fill:black;
+        }
+    }
+}
+.twit{
+    &:hover{
+        svg{
+            fill:#1DA1F2;
+        }
+    }
+}
+.linked{
+    &:hover{
+        svg{
+            fill:#1666C5;
+        }
+    }
+}
+.face{
+    &:hover{
+        svg{
+            fill:black;
+            
+        }
+    }
+}
+.inst{
+    &:hover{
+        svg{
+            fill:#EA4335;
+        }
+    }
+}

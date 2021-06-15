@@ -1,7 +1,6 @@
 <div class="main-home flex flex-col">
-    <div class="inner-block">
     <div class="border-b border-[#D1DBEF]  py-2">
-        <p class="text-center text-xl font-bold text-[#2196F3]">Home - Reports</p>
+        <p class="text-center text-xl font-bold text-[#2196F3]"><span class="text-gray-600">Home -</span> Reports</p>
     </div>
     <div class="px-4 my-2 py-4">
         <div *ngFor="let report of reports">
@@ -12,5 +11,4 @@
             <label (click)="loadMore()" class="text-center cursor-pointer text-[#2196F3]">Load more</label>
         </div>
     </div>
-   </div>
 </div>
