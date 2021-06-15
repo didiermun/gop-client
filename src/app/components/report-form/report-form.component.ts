@@ -11,7 +11,7 @@ export interface Fruit {
 const NEW_REPORT = gql`
   mutation newReport($data: NewReport!) {
     newReport(data: $data) {
-      id
+      _id
     }
   }
 `;
@@ -98,7 +98,7 @@ export class ReportFormComponent implements OnInit {
       starttime: [, Validators.required],
       endtime: [, Validators.required],
       family: ['', Validators.required],
-      none_habits: ['', Validators.required],
+      habituated: ['', Validators.required],
       location: ['', Validators.required],
       individuals: [, Validators.required,],
       Oindividuals: [, Validators.required,],
@@ -148,19 +148,20 @@ export class ReportFormComponent implements OnInit {
     delete baseInfo.endtime;
     baseInfo.individuals = Math.round(baseInfo.individuals)
     baseInfo.Oindividuals = Math.round(baseInfo.Oindividuals)
+    baseInfo.distance = baseInfo.distance.toString();
 
 
     //gathering all species
-    let species:string[] = [...this.secondFormGroup.value.species]
+    let feeding:string[] = [...this.secondFormGroup.value.species]
     if(this.secondFormGroup.value.bamboo == true){
-      species = [...species,'Bamboo']
+      feeding = [...feeding,'Bamboo']
     }
     if(this.secondFormGroup.value.eucalyptus == true){
-      species = [...species,'Eucalyptus']
+      feeding = [...feeding,'Eucalyptus']
     }
 
     let budget = {
-      species: species,
+      feeding: feeding,
       distance: this.secondFormGroup.value.distance,
       period: this.secondFormGroup.value.period,
     }
@@ -236,6 +237,7 @@ export class ReportFormComponent implements OnInit {
     }).subscribe(({ data }) => {
       let res: any = data;
       console.log(res)
+      this.router.navigateByUrl(`report/${res.newReport._id}`);
     },(error) => {
       console.log(data);
       console.log(error.networkError)
