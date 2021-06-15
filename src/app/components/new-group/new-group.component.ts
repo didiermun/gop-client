@@ -1,6 +1,7 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { Apollo,gql } from 'apollo-angular';
 
 const CREATE_GROUP = gql`
@@ -21,7 +22,7 @@ const CREATE_GROUP = gql`
 export class NewGroupComponent implements OnInit {
   newGroupFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder,private apollo: Apollo) { }
+  constructor(private _formBuilder: FormBuilder,private apollo: Apollo,private router: Router) { }
 
   ngOnInit(): void {
     this.newGroupFormGroup = this._formBuilder.group({
@@ -50,8 +51,9 @@ export class NewGroupComponent implements OnInit {
       if(error.networkError){
         console.log("Slow or no internet detected");
       }
-      else if(error.graphQLErrors){
-        console.log(error.graphQLErrors[0].message);
+      else if(error.graphQLErrors[0].status == 401){
+        localStorage.removeItem('gop_app_token')
+        this.router.navigateByUrl('/login');
       }
     });
   }

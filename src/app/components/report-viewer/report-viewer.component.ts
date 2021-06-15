@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QueryRef,Apollo, gql } from 'apollo-angular';
 import { Subscription } from 'rxjs';
 
@@ -58,7 +58,7 @@ export class ReportViewerComponent implements OnInit {
   private querySubscription!: Subscription;
   loading: boolean = true;
   report: any = {}
-  constructor(private route: ActivatedRoute,private apollo: Apollo) { }
+  constructor(private route: ActivatedRoute,private apollo: Apollo,private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -81,7 +81,10 @@ export class ReportViewerComponent implements OnInit {
         // this.notifier.notify('error','Internet connection problems detected')
         console.log('network error detected');
       }
-      console.log(error.networkError)
+      else if(error.graphQLErrors[0].status == 401){
+        localStorage.removeItem('gop_app_token')
+        this.router.navigateByUrl('/login');
+      }
     });
       }
     );
