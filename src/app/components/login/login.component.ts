@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
-      console.log(res);
       if(res.login.success){
         localStorage.setItem("gop_app_token",res.login.token)
         this.router.navigateByUrl("/");

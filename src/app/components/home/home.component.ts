@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
 import { Subscription } from 'rxjs';
+import { Router} from '@angular/router'
 
 const GET_REPORTS =  gql`
   query reports($page: Int){
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
   loading: boolean = true;
   page:number =  1;
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo,private router: Router) { }
 
   loadMore() {
     this.reportsQuery.refetch({page: this.page})
@@ -62,6 +63,10 @@ export class HomeComponent implements OnInit {
         this.reports = [...this.reports,...data.reports];
         this.page++;
     },(error) => {
+      if(error.graphQLErrors[0].status == 401){
+        localStorage.removeItem('gop_app_token')
+        this.router.navigateByUrl('/login');
+      }
       console.log('error', `${error.message}`);
     });
   }

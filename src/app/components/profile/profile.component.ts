@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
 import { Subscription } from 'rxjs';
+import { Router} from '@angular/router'
 
 const GET_ME =  gql`
   query me{
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
   group:any = {};
   date: Date = new Date();
   private querySubscription!: Subscription;
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo,private router: Router) { }
 
   ngOnInit(): void {
     this.meQuery = this.apollo.watchQuery<any>({
@@ -37,10 +38,13 @@ export class ProfileComponent implements OnInit {
       .valueChanges
       .subscribe(({ data, loading }) => {
         if(!loading){
-          console.log(data.me.group);
           this.group = data.me.group;
       }
       },(error) => {
+        if(error.graphQLErrors[0].status == 401){
+          localStorage.removeItem('gop_app_token')
+          this.router.navigateByUrl('/login');
+        }
         console.log(error.graphQLErrors)
         console.log('error', `${error.message}`);
       });

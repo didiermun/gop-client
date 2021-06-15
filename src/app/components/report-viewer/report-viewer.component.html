@@ -6,10 +6,10 @@
         <div class="col-span-12 lg:col-span-5">
             <div class="w-full bg-white shadow-lg rounded py-2 grid justify-items-center max-h-24 my-2 hover:shadow-2xl">
                 <p class="font-semibold ">Date and Time</p>
-                <p class="border-blue-500 hover:border-b">Report date: 26 July 2021</p>
+                <p class="border-blue-500 hover:border-b">Report date: {{report.timing?.date | date}}</p>
                 <div class="w-full grid grid-cols-6 gap-1 justify-items-center">
-                    <p class="col-span-3 border-blue-500 hover:border-b">Start Time: 8 AM </p>
-                    <p class="col-span-3 border-blue-500 hover:border-b">End Time: 4 PM </p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">Start Time: {{report.timing?.start}} </p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">End Time: {{report.timing?.end}} </p>
                 </div>
             </div>
 
@@ -17,26 +17,27 @@
                 <p class="font-semibold">Base Information</p>
                 <mat-divider></mat-divider>
                 <div class="w-full grid grid-cols-6 gap-2 px-4">
-                    <p class="col-span-3 border-blue-500 hover:border-b">Group Name: Amahoro</p>
-                    <p class="col-span-3 border-blue-500 hover:border-b">No habituated: Habituated</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">Group Name: {{report.baseInfo?.family}}</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">No habituated: {{report.baseInfo?.habituated}}</p>
                     <p class="col-span-6 text-center font-semibold my-0 py-0">Group exit point</p>
                     <mat-divider class="col-span-6 my-0 py-0"></mat-divider>
-                    <p class="col-span-3 border-blue-500 hover:border-b pt-2">Village Name: Rugi</p>
-                    <p class="col-span-3 border-blue-500 hover:border-b pt-2">Distance reached outside park: 26 M</p>
-                    <p class="col-span-3 border-blue-500 hover:border-b">Location: Gashangiro</p>
-                    <p class="col-span-3 border-blue-500 hover:border-b">Number of Individuals: 40</p>
-                    <p class="col-span-3 border-blue-500 hover:border-b">Number of Individuals outside the park: 18</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b pt-2">Village Name: {{report.baseInfo?.habituated}}</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b pt-2">Distance reached outside park: {{report.baseInfo?.distance}}</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">Location: {{report.baseInfo?.location}}</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">Number of Individuals: {{report.baseInfo?.individuals}}</p>
+                    <p class="col-span-3 border-blue-500 hover:border-b">Number of Individuals outside the park: {{report.baseInfo?.Oindividuals}}</p>
                 </div>
     
             </div>
             <div class="w-full bg-white shadow-lg rounded py-2 grid justify-items-center my-2 hover:shadow-2xl">
                 <p class="font-semibold">Tourism Activities</p>
-                <p class="border-blue-500 hover:border-b">Number of Tourists: 18 Tourists</p>
-                <p class="border-blue-500 hover:border-b">Period: 2 hours of visit outside the park</p>
+                <p class="border-blue-500 hover:border-b">Number of Tourists: {{report.touristActivity?.tourist}} Tourists</p>
+                <p class="border-blue-500 hover:border-b">Period: {{report.touristActivity?.period}} of visit outside the park</p>
                 <div class="w-full flex px-10">
                     <span class="font-semibold mr-4 border-blue-500 hover:border-b">Unusual behaviors</span>
                     <div class="w-full flex flex-col">
-                        <span class="">. Furiuos</span>
+                        <span *ngIf="report.touristActivity?.behaviour?.length == 0">No behaviors</span>
+                        <span class="" *ngFor="let behave of report.touristActivity?.behaviour">. {{behave}}</span>
                     </div>
                 </div>
             </div>
@@ -49,23 +50,21 @@
                     <div class="col-span-6 md:col-span-3 border-blue-500 hover:border-b flex">
                         <span class="font-semibold mr-4">Feeding</span>
                         <div class="w-full flex flex-col">
-                            <span class="">. Eucalptus</span>
-                            <span class="">. Bamboo</span>
-                            <span class="">. Leganes</span>
-                            <span class="">. Potatoes</span>
+                            <span *ngIf="report.budget?.feeding?.length == 0">No feeding</span>
+                            <span class="" *ngFor="let feed of report.budget?.feeding">. {{feed}}</span>
                         </div>
                     </div>
                     <div class="col-span-6 md:col-span-3 border-blue-500 hover:border-b flex mt-4">
                         <span class="font-semibold mr-4">Resting</span>
                         <div class="w-full flex flex-col">
-                            <span class="">. 20 meters moved away from the park</span>
-                            <span class="">. 38 minutes spent resting outside the park</span>
+                            <span class="">. {{report.budget?.distance}} meters moved away from the park</span>
+                            <span class="">. {{report.budget?.period || '1 hour and 20 minutes'}} spent resting outside the park</span>
                         </div>
                     </div>
                     <div class="col-span-6 md:col-span-3 border-blue-500 hover:border-b flex mt-4">
                         <span class="font-semibold mr-4">Travel</span>
                         <div class="w-full flex flex-col">
-                            <span class="">. 45 meters walked outside the park</span>
+                            <span class="">. {{report.budget?.distance}} meters walked outside the park</span>
                         </div>
                     </div>
                     <div class="col-span-6 md:col-span-3 border-blue-500 hover:border-b flex mt-4">
@@ -85,28 +84,26 @@
                 <p class="font-semibold">Interations with Human and livestock</p>
                 <mat-divider></mat-divider>
                 <div class="w-full grid grid-cols-6 gap-0 px-4">
-                    <p class="col-span-6 border-blue-500 hover:border-b">Distance from gorillas: Less than 50 M</p>
+                    <p class="col-span-6 border-blue-500 hover:border-b">Distance from gorillas: {{report.interaction?.distance}} meters</p>
                     <div class="col-span-3 border-blue-500 hover:border-b mt-2">
                         <span class="font-semibold mr-4">Reaction from gorillas</span>
                         <div class="w-full flex flex-col">
-                            <span class="">. Running</span>
-                            <span class="">. Charging</span>
+                            <span *ngIf="report.interaction?.reaction?.length == 0">No Reactions</span>
+                            <span class="" *ngFor="let reaction of report.interaction?.reaction">. {{reaction}}</span>
                         </div>
                     </div>
                     <div class="col-span-3 border-blue-500 hover:border-b mt-2">
                         <span class="font-semibold mr-4">Observation from human Objects</span>
                         <div class="w-full flex flex-col">
-                            <span class="">. Dung</span>
-                            <span class="">. Clothes</span>
-                            <span class="">. Hut</span>
+                            <span *ngIf="report.interaction?.reaction?.length == 0">No Observations</span>
+                            <span class="" *ngFor="let observation of report.interaction?.observation">. {{observation}}</span>
                         </div>
                     </div>
                     <div class="col-span-6 flex mt-2 border-blue-500 hover:border-b">
                         <span class="font-semibold mr-4">Any noticeable behavior</span>
                         <div class="w-full flex flex-col">
-                            <span class="">. Sleeping</span>
-                            <span class="">. Broken leg</span>
-                            <span class="">. Anglier</span>
+                            <span *ngIf="report.interaction?.behaviour?.length == 0">No Behaviors</span>
+                            <span class="" *ngFor="let behaviour of report.interaction?.behaviour">. {{behaviour}}</span>
                         </div>
                     </div>
                 </div>
@@ -114,19 +111,18 @@
             </div>
             <div class="w-full bg-white shadow-lg rounded py-2 grid justify-items-center my-2 hover:shadow-2xl">
                 <p class="font-semibold">Sickness</p>
-                <p class="border-blue-500 hover:border-b">Is there any sick gorillas: Yes, Sick gorillas reported</p>
-                <div class="w-full flex px-10 border-blue-500 hover:border-b">
+                <p class="border-blue-500 hover:border-b">Is there any sick gorillas: <span *ngIf="report.health?.sick">Yes, Sick gorillas reported</span><span *ngIf="!report.health?.sick">Yes, Sick gorillas reported</span></p>
+                <div class="w-full flex px-10 border-blue-500 hover:border-b" *ngIf="report.health?.sick">
                     <span class="font-semibold mr-4">What signs</span>
                     <div class="w-full flex flex-col">
-                        <span class="">. Cough</span>
-                        <span class="">. Flu</span>
-                        <span class="">. Injury</span>
+                        <span *ngIf="report.health?.signs?.length == 0">No Behaviors</span>
+                        <span class="" *ngFor="let sign of report.health?.signs">. {{sign}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-span-12 pt-4 px-4 bg-white rounded shadow-lg">
-            <p class="w-full text-center border-blue-500 hover:border-b">Team leader: Kwizera Emmanuel</p>
+            <p class="w-full text-center border-blue-500 hover:border-b">Team leader: {{report.reporter?.leader}}</p>
             <p class="w-full text-center text-[#2196F3] cursor-pointer" routerLink="/reports">View other reports</p>
         </div>
     </div>
