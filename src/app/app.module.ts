@@ -39,6 +39,8 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './services/guards/authGaurd.service';
 import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe';
     GroupLayoutComponent,
     GroupsComponent,
     NewGroupComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
