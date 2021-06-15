@@ -23,7 +23,7 @@ export class ReportFormComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   distances: string[] = ['<50M','-50-100M','>100M'];
-  anySick: string[] = ['True', 'False'];
+  anySick: any[] = [{dValue:'Yes, there is',value:true}, {dValue:'No, not any',value:false}];
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   add(event: MatChipInputEvent,count:Number): void {
@@ -67,7 +67,7 @@ export class ReportFormComponent implements OnInit {
     }
   }
   }
-  isLinear = false;
+  isLinear = true;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
   thirdFormGroup!: FormGroup;
@@ -87,11 +87,11 @@ export class ReportFormComponent implements OnInit {
       date: [, Validators.required],
       starttime: [, Validators.required],
       endtime: [, Validators.required],
-      group: ['', Validators.required],
+      family: ['', Validators.required],
       none_habits: ['', Validators.required],
       location: ['', Validators.required],
-      nIndividuals: [, Validators.required,],
-      nOutIndividuals: [, Validators.required,],
+      individuals: [, Validators.required,],
+      Oindividuals: [, Validators.required,],
       distance: [, Validators.required],
       village: ['', Validators.required],     
     });
@@ -100,6 +100,7 @@ export class ReportFormComponent implements OnInit {
       species: [[], Validators.required],
       bamboo: [false, Validators.required],
       eucalyptus: [false, Validators.required], 
+      period: ['', Validators.required],
     });
     this.thirdFormGroup = this._formBuilder.group({
       distance: ['', Validators.required],
@@ -108,7 +109,7 @@ export class ReportFormComponent implements OnInit {
       dungObservation:[false, Validators.required],
       clothingObservation:[false, Validators.required],
       hutObservation:[false, Validators.required],
-      behavior: [[], Validators.required],
+      behaviour: [[], Validators.required],
     })
     this.forthFormGroup = this._formBuilder.group({
       behavior: [[], Validators.required],
@@ -117,7 +118,7 @@ export class ReportFormComponent implements OnInit {
     })
 
     this.fifthFormGroup = this._formBuilder.group({
-      sickfound: ['', Validators.required],
+      sick: [false, Validators.required],
       cough: [false, Validators.required],
       flu:[false, Validators.required],
       injury:[false, Validators.required],
@@ -126,7 +127,63 @@ export class ReportFormComponent implements OnInit {
     })
   }
   submit() {
-    console.log(this.thirdFormGroup.value);
+    let baseInfo: any =this.firstFormGroup.value;
+    baseInfo.date = baseInfo.date.toString();
+    baseInfo.individuals = Math.round(baseInfo.individuals)
+    baseInfo.Oindividuals = Math.round(baseInfo.Oindividuals)
+    console.log(baseInfo);
+
+    //gathering all species
+    let species:string[] = [...this.secondFormGroup.value.species]
+    if(this.secondFormGroup.value.bamboo == true){
+      species = [...species,'Bamboo']
+    }
+    if(this.secondFormGroup.value.eucalyptus == true){
+      species = [...species,'Eucalyptus']
+    }
+
+    // putting together all reactions in the form in third form group
+    let reactions:string[] = [];
+    if(this.thirdFormGroup.value.runningReaction == true){
+      reactions = [...reactions,'Running']
+    }
+    if(this.thirdFormGroup.value.chargingReaction == true){
+      reactions = [...reactions,'Charging']
+    }
+    console.log(reactions)
+
+
+    //putting together all observations in third form group
+    let observation:string[] = [];
+    if(this.thirdFormGroup.value.clothingObservation == true){
+      observation = [...observation,'Clothes']
+    }
+    if(this.thirdFormGroup.value.dungObservation == true){
+      observation = [...observation,'Dung']
+    }
+    if(this.thirdFormGroup.value.hutObservation == true){
+      observation = [...observation,'Hut']
+    }
+
+    //gathering all sickness around
+
+    let sickness:string[] = [];
+    if(this.fifthFormGroup.value.cough == true){
+      sickness = [...sickness,'Cough']
+    }
+    if(this.fifthFormGroup.value.flu == true){
+      sickness = [...sickness,'Flu']
+    }
+    if(this.fifthFormGroup.value.injury == true){
+      sickness = [...sickness,'Injury']
+    }
+    if(this.fifthFormGroup.value.limbbroken == true){
+      sickness = [...sickness,'Broken Limb']
+    }
+    if(this.fifthFormGroup.value.diarrhea == true){
+      sickness = [...sickness,'Diarrhea']
+    }
+
   }
 
 }

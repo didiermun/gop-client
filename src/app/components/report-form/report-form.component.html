@@ -32,7 +32,7 @@
                         <div class="grid grid-cols-6 gap-2">
                          <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>Group Name</mat-label>
-                            <input matInput placeholder="Name of group" formControlName="group" required>
+                            <input matInput placeholder="Name of group" formControlName="family" required>
                          </mat-form-field>
                          <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>None Habituated</mat-label>
@@ -48,6 +48,7 @@
                       <mat-form-field class="col-span-6 sm:col-span-3">
                         <mat-label>Distance moved outside the park</mat-label>
                         <input type="number" matInput placeholder="Distance" formControlName="distance">
+                        <span matSuffix>Meters &nbsp;</span>
                     </mat-form-field>
                   </div>
                         <mat-form-field class="w-full">
@@ -58,11 +59,11 @@
                     <div class="col-span-6 grid grid-cols-6 gap-2">
                         <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>Number of Individuals</mat-label>
-                            <input matInput  formControlName="nIndividuals" required>
+                            <input matInput type="number"  formControlName="individuals" required>
                         </mat-form-field>
                         <mat-form-field class="col-span-6 sm:col-span-3">
                             <mat-label>Number of Individuals outside the park</mat-label>
-                            <input matInput  formControlName="nOutIndividuals" required>
+                            <input matInput type="number" formControlName="Oindividuals" required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -105,7 +106,10 @@
                         <p class="font-semibold">Resting</p> 
                         <div class="flex flex-col">
                             <span>- Distance from the park</span>
-                            <span>- Period spent resting outside of the park</span>
+                            <span>-Period spen resting outside the park:</span>
+                            <mat-form-field >
+                                <input matInput  formControlName="period" required>
+                            </mat-form-field>
                         </div>
                     </div>
 
@@ -115,6 +119,7 @@
                             <span>Distance walked outside of the park:</span>
                             <mat-form-field >
                                 <input matInput  formControlName="distance" required>
+                                <span matSuffix>Meters &nbsp;</span>
                             </mat-form-field>
                         </div>
                     </div>
@@ -172,7 +177,7 @@
                         <span>Any unusual behaviour during tourism visit(separate with comma or enter):</span>
                         <mat-form-field class="example-chip-list">
                             <mat-chip-list #chipList aria-label="Fruit selection">
-                              <mat-chip *ngFor="let fruit of thirdFormGroup.value.behavior" [selectable]="selectable"
+                              <mat-chip *ngFor="let fruit of thirdFormGroup.value.behaviour" [selectable]="selectable"
                                        [removable]="removable" (removed)="remove(fruit,3)">
                                 {{fruit.name}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -247,9 +252,9 @@
                         <mat-radio-group
                                  aria-labelledby="example-radio-group-label"
                                  class="grid grid-cols-6 gap-2"
-                                 formControlName="sickfound">
-                                 <mat-radio-button color="primary" class="col-span-2" *ngFor="let sick of anySick" [value]="sick">
-                                   {{sick}}
+                                 formControlName="sick">
+                                 <mat-radio-button color="primary" class="col-span-3 lg:col-span-2" *ngFor="let sick of anySick" [value]="sick.value">
+                                   {{sick.dValue}}
                                  </mat-radio-button>
                         </mat-radio-group>
                       </div>
@@ -258,11 +263,11 @@
                   <div class="w-full mt-4  px-10 py-4 rounded border-b">
                       <span class="font-semibold">What signs?</span>
                       <section class="example-section grid grid-cols-6 gap-2 mt-4">
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="cough" >Dung</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="flu">Clothes</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="injury">Hut</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="limbbroken">Hut</mat-checkbox></p>
-                        <p class="col-span-6 sm:col-span-3 md:col-span-2"><mat-checkbox color="primary" formControlName="diarrhea">Hut</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2"><mat-checkbox color="primary" formControlName="cough" >Dung</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2"><mat-checkbox color="primary" formControlName="flu">Flu</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2"><mat-checkbox color="primary" formControlName="injury">Injury</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2"><mat-checkbox color="primary" formControlName="limbbroken">Broken Limb</mat-checkbox></p>
+                        <p class="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2"><mat-checkbox color="primary" formControlName="diarrhea">Diarrhea</mat-checkbox></p>
                       </section>
                   </div>
               </div>
