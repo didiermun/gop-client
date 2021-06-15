@@ -1,5 +1,17 @@
+import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
+import { Apollo,gql } from 'apollo-angular';
+
+const CREATE_GROUP = gql`
+  mutation newGroup($data: NewGroup!) {
+    newGroup(data: $data) {
+      id
+      leader
+      name
+    }
+  }
+`;
 
 @Component({
   selector: 'app-new-group',
@@ -9,18 +21,39 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class NewGroupComponent implements OnInit {
   newGroupFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,private apollo: Apollo) { }
 
   ngOnInit(): void {
     this.newGroupFormGroup = this._formBuilder.group({
-      groupLeader: ['', Validators.required],
-      groupCode: ['', Validators.required],
-      groupPassword: ['', Validators.required]
+      leader: ['', Validators.required],
+      code: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
-  submit(){
+  submit(formDirective: FormGroupDirective){
     console.log(this.newGroupFormGroup.value);
+    this.newGroupFormGroup.value.name = this.newGroupFormGroup.value.leader+ "'s group"
+    this.apollo.mutate({
+      mutation: CREATE_GROUP,
+      variables: {
+        data: this.newGroupFormGroup.value
+      }
+    }).subscribe(({ data }) => {
+      let res: any = data;
+      if(res.newGroup){
+        formDirective.resetForm();
+        this.newGroupFormGroup.reset();
+        console.log(res.newGroup);
+      }
+    },(error) => {
+      if(error.networkError){
+        console.log("Slow or no internet detected");
+      }
+      else if(error.graphQLErrors){
+        console.log(error.graphQLErrors[0].message);
+      }
+    });
   }
 
 }
