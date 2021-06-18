@@ -1,15 +1,16 @@
-<div class="bg-blue-500 min-h-screen">
+<div class="bg-blue-400 min-h-screen">
 <app-header></app-header>
 <div class="full-height">
-<form class="grid justify-items-center" [formGroup]="loginFormGroup" (ngSubmit)="submit()">
-    <div class="max-w-md py-4 px-8 shadow-lg rounded-lg my-28 bg-white">
+  <div class="form">
+<form class="bg-white shadow-lg rounded-sm" [formGroup]="loginFormGroup" (ngSubmit)="submit()">
+    <div class="py-4 px-8">
         <div>
           <p class="text-gray-800 text-2xl font-medium">Login</p>
           <p class="mt-2 text-gray-600 text-md">Type your group code and password to enter</p>
         </div>
         <div class="mat-dialog-content" >
   
-          <div class="form flex flex-col">
+          <div class="flex flex-col">
             <mat-form-field color="primary">
               <input matInput type="text" #codeinput class="form-control" placeholder="Team Code"  formControlName="code" required minlength="7" maxlength="10" >
               <mat-hint align="end">{{codeinput.value?.length || 0}}/10</mat-hint>
@@ -29,6 +30,7 @@
         </div>
       </div>
     </form>
+  </div>
   </div>
     <app-footer></app-footer>
   </div>

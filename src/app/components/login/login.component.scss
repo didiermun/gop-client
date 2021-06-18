@@ -10,4 +10,12 @@
 
 .full-height{
   min-height: calc(100vh - 80px);
+  position: relative;
+}
+
+.form{
+  position: absolute; 
+   top: 50%;     
+   left: 40%;                  
+   transform: translate(0, -50%)
 }

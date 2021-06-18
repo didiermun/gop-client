@@ -1,31 +1,32 @@
-<div class="h-full w-full lg:overflow-hidden flex flex-col justify-between">
+<div class="w-full flex flex-col justify-between min-h-screen  bg-blue-400 overflow-x-hidden">
 
-    <div class="w-full flex justify-between px-2 py-3 pr-12">
+    <!-- <div class="w-full flex justify-between px-2 py-3 pr-12">
         <p class="text-5xl font-bold  px-4 py-2 cursor-pointer text-blue-500">GOP</p>
         <div class="flex gap-4"><p class="px-2 text-lg cursor-pointer border-blue-500 hover:border-b h-8">Home</p><p class="text-lg cursor-pointer border border-blue-500 h-8 rounded px-6" routerLink="/login">Login</p></div>
-    </div>
-    <div class="w-full flex justify-center mt-8 mb-10">
-        <p class="text-lg text-center px-10  md:w-1/2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam possimus, eligendi, animi commodi delectus aliquam libero amet tempora voluptate harum facere! Nam sed odit natus alias! Et nihil eum provident.</p>
+    </div> -->
+    <app-header></app-header>
+    <div class="w-full flex justify-center mt-8 mb-10 px-4">
+        <p class="text-lg text-center px-10 w-full md:w-1/2 cursor-pointer transition-all rounded-lg hover:rounded-2xl hover:text-xl hover:text-white hover:shadow-xl py-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam possimus, eligendi, animi commodi delectus aliquam libero amet tempora voluptate harum facere! Nam sed odit natus alias! Et nihil eum provident.</p>
     </div>
 
     <div class="w-full mb-4 gap-4 px-4">
         <div class="w-full flex justify-center">
-            <p class="text-center text-2xl font-semibold cursor-pointer border-blue-500 hover:border-b transition-all px-4">Main Features</p>
+            <p class="text-center text-2xl font-semibold cursor-pointer border-white hover:border-b transition-all px-4 text-white">Main Features</p>
         </div>
         <div class="flex flex-wrap gap-4 w-full justify-center">
-            <div class="bg-white px-4 py-4  rounded-md shadow-2xl feature">
+            <div class="bg-white px-4 py-4  rounded-md shadow-lg feature hover:shadow-2xl hover:text-lg transition-all">
                 <p class="text-center font-semibold text-blue-600 text-lg">Reporting</p>
                 <div class="py-2 px-4 text-center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptas saepe quibusdam deleniti repellat facere, quos in nesciunt labore perspiciatis. Iste nobis minus vel fuga explicabo sequi ipsa consequatur ducimus.
                 </div>
             </div>
-            <div class="bg-white px-4 py-4  rounded-md shadow-2xl feature">
+            <div class="bg-white px-4 py-4  rounded-md shadow-lg feature hover:shadow-2xl hover:text-lg transition-all">
                 <p class="text-center font-semibold text-blue-600 text-lg">Syncronization</p>
                 <div class="py-2 px-4 text-center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptas saepe quibusdam deleniti repellat facere, quos in nesciunt labore perspiciatis. Iste nobis minus vel fuga explicabo sequi ipsa consequatur ducimus.
                 </div>
             </div>
-        <div class="bg-white px-4 py-4  rounded-md shadow-2xl feature">
+        <div class="bg-white px-4 py-4  rounded-md shadow-lg feature hover:shadow-2xl hover:text-lg transition-all">
             <p class="text-center font-semibold text-blue-600 text-lg">Real Time</p>
             <div class="py-2 px-4 text-center">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptas saepe quibusdam deleniti repellat facere, quos in nesciunt labore perspiciatis. Iste nobis minus vel fuga explicabo sequi ipsa consequatur ducimus.
@@ -34,4 +35,8 @@
     </div>
     </div>
 
+</div>
+
+<div class="border-t">
+<app-footer></app-footer>
 </div>
