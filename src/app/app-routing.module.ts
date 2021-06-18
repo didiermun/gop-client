@@ -12,13 +12,14 @@ import {ReportViewLayoutComponent} from './layouts/report-view-layout/report-vie
 import { GroupLayoutComponent } from './layouts/group-layout/group-layout.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { AuthGuardService } from './services/guards/authGaurd.service'
+import { AppIndexComponent } from './app-index/app-index.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
+  { path: '',   component: AppIndexComponent },
   {path: '', component: ReportViewLayoutComponent, canActivate: [AuthGuardService],
   children:[
     {path: 'report/:report_id',component: ReportViewerComponent},
-    { path: '',   redirectTo: '/reports', pathMatch: 'full' },
   ]},
   {path: '', component: GroupLayoutComponent, children:[
     {path: 'groups', component: GroupsComponent}
@@ -30,7 +31,6 @@ const routes: Routes = [
    {path: 'mine-gops',component: MyReportsComponent},
    {path: 'new-gop',component: ReportFormComponent},
    {path: 'stats',component:StatsComponent},
-   { path: '',   redirectTo: '/reports', pathMatch: 'full' },
   ]
  },
  {path: '**',   redirectTo: '/reports', pathMatch: 'full'}

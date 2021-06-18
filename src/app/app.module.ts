@@ -42,6 +42,7 @@ import { AuthGuardService } from './services/guards/authGaurd.service';
 import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { AppIndexComponent } from './app-index/app-index.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { HeaderComponent } from './header/header.component';
     NewGroupComponent,
     DateAgoPipe,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AppIndexComponent
   ],
   imports: [
     BrowserModule,
