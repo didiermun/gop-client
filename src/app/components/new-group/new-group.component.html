@@ -24,7 +24,7 @@
         </mat-form-field>
     </div>
     <div class="grid justify-items-end my-2 ">
-      <button [disabled]="newGroupFormGroup.invalid"  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-3 transition-all focus:outline-none">Add new Group</button>
+      <button [disabled]="newGroupFormGroup.invalid"  class="mx-10 bg-[#bac4c5] hover:bg-[#78999E] hover:text-white px-8 py-3 transition-all focus:outline-none"><span *ngIf="loading == false">Add new Group</span><mat-spinner *ngIf="loading == true" color="primary" diameter="20"></mat-spinner></button>
     </div>
 </form>
 

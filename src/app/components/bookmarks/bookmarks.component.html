@@ -7,6 +7,9 @@
            <app-r-card [report]="report"></app-r-card>
            <mat-divider></mat-divider>
         </div>
+        <div class="grid justify-items-center">
+            <mat-spinner *ngIf="loading" color="primary" diameter="60"></mat-spinner>
+        </div>
         <div class="w-full bg-white mt-2 px-2 py-1 rounded flex flex-col items-center mx-auto">
             <label (click)="loadMore()" class="text-center cursor-pointer text-[#2196F3]">Load more</label>
         </div>

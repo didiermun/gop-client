@@ -22,7 +22,7 @@
           <p class="text-red-500">{{error}}</p>
         </div>  
         <div class="flex justify-end mt-4">
-            <button [disabled]="loginFormGroup.invalid" class="text-center w-32 bg-[#2196F3] rounded text-white py-2 font-medium focus:outline-none" >Login</button>
+            <button [disabled]="loginFormGroup.invalid" class="text-center w-32 bg-[#2196F3] rounded text-white py-2 font-medium focus:outline-none" ><span *ngIf="loading == false">Login</span><mat-spinner *ngIf="loading == true" color="primary" diameter="20"></mat-spinner></button>
         </div>
       </div>
     </form>

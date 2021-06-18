@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AppComponent } from './app.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -87,6 +88,7 @@ import { HeaderComponent } from './header/header.component';
     MatCardModule,
     GraphQLModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

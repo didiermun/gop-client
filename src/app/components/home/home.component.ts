@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   constructor(private apollo: Apollo,private router: Router) { }
 
   loadMore() {
+    this.loading = true;
     this.reportsQuery.refetch({page: this.page})
   }
 

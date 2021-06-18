@@ -20,12 +20,14 @@ const LOGIN = gql`
 export class LoginComponent implements OnInit {
   loginFormGroup!: FormGroup;
   error: string = "";
+  loading: boolean = false;
 
   hide: boolean = false;
 
   constructor(private apollo: Apollo,private router: Router,private _formBuilder: FormBuilder) { }
 
   submit(){
+    this.loading = true;
     this.error = "";
     this.apollo.mutate({
       mutation: LOGIN,
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
       
       // this.notifier.notify('error', `${error.}`);
     });
+    this.loading = false;
   }
 
   ngOnInit(): void {

@@ -21,6 +21,7 @@ const CREATE_GROUP = gql`
 })
 export class NewGroupComponent implements OnInit {
   newGroupFormGroup!: FormGroup;
+  loading: boolean = false;
 
   constructor(private _formBuilder: FormBuilder,private apollo: Apollo,private router: Router) { }
 
@@ -33,6 +34,7 @@ export class NewGroupComponent implements OnInit {
   }
 
   submit(formDirective: FormGroupDirective){
+    this.loading = true;
     console.log(this.newGroupFormGroup.value);
     this.newGroupFormGroup.value.name = this.newGroupFormGroup.value.leader+ "'s group"
     this.apollo.mutate({
@@ -56,6 +58,7 @@ export class NewGroupComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }
     });
+    this.loading = false;
   }
 
 }
