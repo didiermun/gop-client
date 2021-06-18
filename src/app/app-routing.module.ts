@@ -12,7 +12,7 @@ import {ReportViewLayoutComponent} from './layouts/report-view-layout/report-vie
 import { GroupLayoutComponent } from './layouts/group-layout/group-layout.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { AuthGuardService } from './services/guards/authGaurd.service'
-import { AppIndexComponent } from './app-index/app-index.component';
+import { AppIndexComponent } from './components/app-index/app-index.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},

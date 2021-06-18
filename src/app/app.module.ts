@@ -40,9 +40,9 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './services/guards/authGaurd.service';
 import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { AppIndexComponent } from './app-index/app-index.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AppIndexComponent } from './components/app-index/app-index.component';
 
 @NgModule({
   declarations: [
