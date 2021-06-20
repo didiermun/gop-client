@@ -32,6 +32,7 @@ export class ReportFormComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  disabled = true;
   distances: string[] = ['<50M','-50-100M','>100M'];
   anySick: any[] = [{dValue:'Yes, there is',value:true}, {dValue:'No, not any',value:false}];
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -94,7 +95,7 @@ export class ReportFormComponent implements OnInit {
    feeding: FormGroup;
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      date: [, Validators.required],
+      date: [new Date(),Validators.required],
       starttime: [, Validators.required],
       endtime: [, Validators.required],
       family: ['', Validators.required],
