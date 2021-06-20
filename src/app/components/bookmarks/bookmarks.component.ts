@@ -55,7 +55,7 @@ export class BookmarksComponent implements OnInit {
   ngOnInit(): void {
     this.reportsQuery = this.apollo.watchQuery<any>({
       query: GET_REPORTS,
-      pollInterval: 0,
+      pollInterval: 500,
       variables:{
         page: this.page
       }
@@ -64,7 +64,7 @@ export class BookmarksComponent implements OnInit {
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
-        this.reports = [...this.reports,...data.bookmarks.bookmarks];
+        this.reports = [...data.bookmarks.bookmarks];
         this.page++;
         if(data.bookmarks.bookmarks.length != 10){
           this.hasNextPage = false;

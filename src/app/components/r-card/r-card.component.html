@@ -6,13 +6,17 @@
             <button mat-icon-button [matMenuTriggerFor]="menu" class="focus:outline-none" aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
-              <mat-menu #menu="matMenu" class="menuclassed">
+              <mat-menu #menu="matMenu" class="menuclassed" [ngSwitch]="isBookmarked">
                 <button class="focus:outline-none" mat-menu-item routerLink="/report/{{report._id}}">
                   <mat-icon>remove_red_eye</mat-icon>
                 </button>
-                <button class="focus:outline-none" mat-menu-item (click)="submit()">
-                  <mat-icon>bookmark_border</mat-icon>
+                <button  *ngSwitchCase="false" class="focus:outline-none" mat-menu-item (click)="submit()">
+                    <mat-icon>bookmark_border</mat-icon>
                 </button>
+                <button *ngSwitchCase="true" class="focus:outline-none" mat-menu-item (click)="submit()">
+                   <mat-icon color="primary">bookmark_border</mat-icon>
+                </button>
+                
               </mat-menu>
         </p>
     </div>
@@ -32,9 +36,12 @@
             <p class="col-span-3">4. <span *ngIf="!report.health.sick"> No</span>Gorillas were mentioned sick in the report</p>
         </div>
     </div>
-    <div class="mt-4 grid justify-items-end mb-2">
-        <button class="focus:outline-none" (click)="submit()">
+    <div class="mt-4 grid justify-items-end mb-2" [ngSwitch]="isBookmarked">
+        <button  *ngSwitchCase="false" class="focus:outline-none" (click)="submit()">
                   <mat-icon>bookmark_border</mat-icon>
+        </button>
+        <button *ngSwitchCase="true" class="focus:outline-none" (click)="submit()">
+            <mat-icon color="primary">bookmark_border</mat-icon>
         </button>
     </div>
 </div>

@@ -1,5 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Apollo,gql } from 'apollo-angular';
+import { Apollo,gql,QueryRef } from 'apollo-angular';
+import { Subscription } from 'rxjs';
+
+
+const IS_BOOKMARKED =  gql`
+  query isbookmarked($id: ID!){
+    isbookmarked(id: $id){ 
+      success
+    }
+  }
+`
 
 
 const BOOK_REPORT = gql`
@@ -17,6 +27,12 @@ const BOOK_REPORT = gql`
 })
 export class RCardComponent implements OnInit {
   @Input() report: any = {};
+  isBookmarked: boolean = false;
+
+  bookQuery!: QueryRef<any>;
+  group:any = {};
+  date: Date = new Date();
+  private querySubscription!: Subscription;
 
   constructor(private apollo: Apollo) {
 
@@ -44,6 +60,27 @@ export class RCardComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.bookQuery = this.apollo.watchQuery<any>({
+      query: IS_BOOKMARKED,
+      variables: {
+        id: this.report._id
+      },
+      pollInterval: 300,
+    });
+    this.querySubscription = this.bookQuery
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        if(!loading){
+          this.isBookmarked = data.isbookmarked.success;
+      }
+      },(error) => {
+        console.log(error.networkError);
+        if(error.graphQLErrors[0].status == 401){
+          localStorage.removeItem('gop_app_token')
+        }
+        console.log(error.graphQLErrors)
+        console.log('error', `${error.message}`);
+      });
   }
 
 }
