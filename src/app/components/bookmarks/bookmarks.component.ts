@@ -39,6 +39,7 @@ const GET_REPORTS =  gql`
 export class BookmarksComponent implements OnInit {
 
   reports: any[] = [];
+  hasNextPage: boolean = true;
   reportsQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
   loading: boolean = true;
@@ -65,6 +66,12 @@ export class BookmarksComponent implements OnInit {
         this.loading = loading;
         this.reports = [...this.reports,...data.bookmarks.bookmarks];
         this.page++;
+        if(data.bookmarks.bookmarks.length != 10){
+          this.hasNextPage = false;
+        }
+        else{
+          this.hasNextPage = true;
+        }
     },(error) => {
       if(error.graphQLErrors[0].status == 401){
         localStorage.removeItem('gop_app_token')
