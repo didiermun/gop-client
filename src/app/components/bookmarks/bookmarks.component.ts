@@ -4,8 +4,9 @@ import { Subscription } from 'rxjs';
 import { Router} from '@angular/router'
 
 const GET_REPORTS =  gql`
-  query reports($page: Int){
-    reports(page: $page){ 
+  query bookmarks($page: Int){
+    bookmarks(page: $page){ 
+      bookmarks{
       _id
       reporter{
         leader
@@ -26,6 +27,7 @@ const GET_REPORTS =  gql`
         start
         date
       }
+    }
     }
   }
 `
@@ -61,7 +63,7 @@ export class BookmarksComponent implements OnInit {
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
-        this.reports = [...this.reports,...data.reports];
+        this.reports = [...this.reports,...data.bookmarks.bookmarks];
         this.page++;
     },(error) => {
       if(error.graphQLErrors[0].status == 401){

@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 import { Router} from '@angular/router'
 
 const GET_REPORTS =  gql`
-  query reports($page: Int){
-    reports(page: $page){ 
+  query work($page: Int){
+    work(page: $page){ 
       _id
       reporter{
         leader
@@ -41,6 +41,7 @@ export class MyReportsComponent implements OnInit {
   private querySubscription!: Subscription;
   loading: boolean = true;
   page:number =  1;
+  hasNextPage: boolean = true;
 
   constructor(private apollo: Apollo,private router: Router) { }
 
@@ -61,10 +62,17 @@ export class MyReportsComponent implements OnInit {
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
-        this.reports = [...this.reports,...data.reports];
+        this.reports = [...this.reports,...data.work];
         this.page++;
+        if(data.work.length != 10){
+          this.hasNextPage = false;
+        }
+        else{
+          this.hasNextPage = true;
+        }
     },(error) => {
-      if(error.graphQLErrors[0].status == 401){
+      console.log(error.networkError);
+      if(error.graphQLErrors[0]?.status == 401){
         localStorage.removeItem('gop_app_token')
         this.router.navigateByUrl('/login');
       }

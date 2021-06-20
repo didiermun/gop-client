@@ -21,7 +21,7 @@ const routes: Routes = [
   children:[
     {path: 'report/:report_id',component: ReportViewerComponent},
   ]},
-  {path: '', component: GroupLayoutComponent, children:[
+  {path: '', component: GroupLayoutComponent, canActivate: [AuthGuardService],children:[
     {path: 'groups', component: GroupsComponent}
   ]},
   {path:'',component:DefaultLayoutComponent, canActivate: [AuthGuardService],

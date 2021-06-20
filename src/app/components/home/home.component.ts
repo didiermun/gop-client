@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
   private querySubscription!: Subscription;
   loading: boolean = true;
   page:number =  1;
+  hasNextPage: boolean = true;
 
   constructor(private apollo: Apollo,private router: Router) { }
 
@@ -62,6 +63,12 @@ export class HomeComponent implements OnInit {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.reports = [...this.reports,...data.reports];
+        if(data.reports.length != 10){
+          this.hasNextPage = false;
+        }
+        else{
+          this.hasNextPage = true;
+        }
         this.page++;
     },(error) => {
       if(error.graphQLErrors[0].status == 401){

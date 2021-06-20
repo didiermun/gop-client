@@ -73,7 +73,6 @@ export class ReportViewerComponent implements OnInit {
         this.querySubscription = this.reportQuery
       .valueChanges
       .subscribe(({ data, loading }) => {
-        console.log(data);
         this.report = data.report;
         this.loading = loading;
     },(error) => {

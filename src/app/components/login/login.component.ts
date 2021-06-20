@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       let res: any = data;
       if(res.login.success){
         localStorage.setItem("gop_app_token",res.login.token)
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/reports");
       }
     },(error) => {
       if(error.networkError){

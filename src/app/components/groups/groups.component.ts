@@ -40,11 +40,11 @@ export class GroupsComponent implements OnInit {
         this.groups = [...this.groups,...data.groups];
         this.page++;
     },(error) => {
+      console.log(error.graphQLErrors)
       if(error.graphQLErrors[0]?.status == 401){
         localStorage.removeItem('gop_app_token')
         this.router.navigateByUrl('/login');
       }
-      console.log(Object.getOwnPropertyNames(error.networkError.error));
       if(error.networkError?.error){
       console.log(error.networkError.error);
     }
