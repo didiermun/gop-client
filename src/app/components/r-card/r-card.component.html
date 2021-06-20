@@ -10,7 +10,7 @@
                 <button class="focus:outline-none" mat-menu-item routerLink="/report/{{report._id}}">
                   <mat-icon>remove_red_eye</mat-icon>
                 </button>
-                <button class="focus:outline-none" mat-menu-item>
+                <button class="focus:outline-none" mat-menu-item (click)="submit()">
                   <mat-icon>bookmark_border</mat-icon>
                 </button>
               </mat-menu>
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="mt-4 grid justify-items-end mb-2">
-        <button class="focus:outline-none">
+        <button class="focus:outline-none" (click)="submit()">
                   <mat-icon>bookmark_border</mat-icon>
         </button>
     </div>
