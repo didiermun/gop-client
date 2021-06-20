@@ -71,7 +71,7 @@ export class NewGroupComponent implements OnInit {
     this._snackBar.open(message, 'Ok', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      panelClass: ['bg-blue-300','text-white','shadow-xl'],
+      panelClass: ['bg-blue-400','text-white','shadow-xl'],
     });
   }
 
