@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Apollo,gql,QueryRef } from 'apollo-angular';
 import { Subscription } from 'rxjs';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 
 const IS_BOOKMARKED =  gql`
@@ -34,10 +39,19 @@ export class RCardComponent implements OnInit {
   date: Date = new Date();
   private querySubscription!: Subscription;
 
-  constructor(private apollo: Apollo) {
+  constructor(private apollo: Apollo,private _snackBar: MatSnackBar) {
 
   }
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'ok', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      panelClass: ['bg-blue-300','text-white','shadow-xl'],
+    });
+  }
   submit(){
     this.apollo.mutate({
       mutation: BOOK_REPORT,
@@ -46,6 +60,7 @@ export class RCardComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
+      this.openSnackBar(res.bookReport.message)
       console.log(data);
     },(error) => {
       console.log(error.networkError);

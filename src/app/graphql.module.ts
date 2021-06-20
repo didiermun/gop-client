@@ -5,8 +5,8 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
-const uri = "http://localhost:4000/graphql"
-// const uri = 'https://gop-backend.herokuapp.com/graphql';
+// const uri = "http://localhost:4000/graphql"
+const uri = 'https://gop-backend.herokuapp.com/graphql';
 
 export function provideApollo(httpLink: HttpLink) {
   const basic = setContext((operation, context) => ({

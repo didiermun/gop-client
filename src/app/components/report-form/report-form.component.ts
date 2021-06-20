@@ -4,6 +4,11 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Apollo,gql } from 'apollo-angular';
 import { Router} from '@angular/router';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 export interface Fruit {
   name: string;
 }
@@ -85,7 +90,10 @@ export class ReportFormComponent implements OnInit {
   forthFormGroup!: FormGroup;
   fifthFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder,private apollo: Apollo,private router: Router) {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  constructor(private _snackBar: MatSnackBar,private _formBuilder: FormBuilder,private apollo: Apollo,private router: Router) {
     this.feeding = _formBuilder.group({
       bamboo: false,
       eucalyptus: false,
@@ -136,6 +144,14 @@ export class ReportFormComponent implements OnInit {
       limbbroken:[false, Validators.required],
       diarrhea:[false, Validators.required],
     })
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'ok', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      panelClass: ['bg-blue-300','text-white','shadow-xl'],
+    });
   }
   submit() {
     let timing: any ={
@@ -237,17 +253,19 @@ export class ReportFormComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
-      console.log(res)
+      this.openSnackBar('Report created successfully!')
       this.router.navigateByUrl(`report/${res.newReport._id}`);
     },(error) => {
       console.log(data);
       console.log(error.networkError)
       console.log(error.graphQLErrors[0]?.error)
       if(error.networkError){
+        this.openSnackBar("Slow or no internet detected")
         // this.error = "Slow or no internet detected";
       }
       else if(error.graphQLErrors){
         // this.error = error.graphQLErrors[0].message;
+        this.openSnackBar(error.graphQLErrors[0].message)
       }
       
       // this.notifier.notify('error', `${error.}`);

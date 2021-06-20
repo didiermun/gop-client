@@ -1,4 +1,8 @@
-import { group } from '@angular/animations';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,8 +26,10 @@ const CREATE_GROUP = gql`
 export class NewGroupComponent implements OnInit {
   newGroupFormGroup!: FormGroup;
   loading: boolean = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(private _formBuilder: FormBuilder,private apollo: Apollo,private router: Router) { }
+  constructor(private _formBuilder: FormBuilder,private _snackBar: MatSnackBar,private apollo: Apollo,private router: Router) { }
 
   ngOnInit(): void {
     this.newGroupFormGroup = this._formBuilder.group({
@@ -45,13 +51,13 @@ export class NewGroupComponent implements OnInit {
     }).subscribe(({ data }) => {
       let res: any = data;
       if(res.newGroup){
+        this.openSnackBar("Report added successfully");
         formDirective.resetForm();
         this.newGroupFormGroup.reset();
-        console.log(res.newGroup);
       }
     },(error) => {
       if(error.networkError){
-        console.log("Slow or no internet detected");
+        this.openSnackBar("Slow or no internet detected");
       }
       else if(error.graphQLErrors[0].status == 401){
         localStorage.removeItem('gop_app_token')
@@ -59,6 +65,14 @@ export class NewGroupComponent implements OnInit {
       }
     });
     this.loading = false;
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'Ok', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      panelClass: ['bg-blue-300','text-white','shadow-xl'],
+    });
   }
 
 }
