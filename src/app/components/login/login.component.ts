@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       panelClass: ['bg-blue-400','text-white','shadow-xl'],
+      duration: 3500,
     });
   }
 
