@@ -3,6 +3,20 @@
     <div class="border-b border-[#D1DBEF]  py-2">
         <p class="text-center text-xl font-bold text-[#2196F3]"><span class="text-gray-600">Home -</span> Statistics</p>
     </div>
-    <p class="text-center text-xl pt-6">Still under development</p>
+    <div class="mt-4">
+        <ngx-charts-bar-vertical 
+          [view]="[(width | async)!,400]"
+          [results]="stats"
+          [xAxisLabel]="'Months'"
+          [legendTitle]="'Month Comparison Chart'"
+          [yAxisLabel]="'Reports'"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="true"
+        ></ngx-charts-bar-vertical>
+      </div>
    </div>
 </div>

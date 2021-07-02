@@ -44,6 +44,7 @@ import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AppIndexComponent } from './components/app-index/app-index.component';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { AppIndexComponent } from './components/app-index/app-index.component';
     FlexLayoutModule,
     MatCardModule,
     GraphQLModule,
+    NgxChartsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
   ],
