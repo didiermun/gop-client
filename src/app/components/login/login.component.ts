@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl("/reports");
       }
     },(error) => {
+      console.log(error);
       if(error.networkError){
         this.error = "Slow or no internet detected";
         this.openSnackBar("Slow or no internet detected");
