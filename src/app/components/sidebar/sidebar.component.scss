@@ -9,6 +9,8 @@ span{
 }
 
 .main{
+    background: #e6f2fc;
+    border-right: 5px solid #2196F3;
     svg{
     fill: #2196F3;
 }
@@ -16,4 +18,8 @@ span{
     color: #2196F3;
     font-weight: 500;
 }
+}
+
+.link{
+    width: 100%;
 }
