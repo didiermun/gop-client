@@ -7,20 +7,21 @@
         <p class="uppercase text-xl text-center py-2 font-semibold">New Group</p>
     <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
         <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Group Leader</mat-label>
+            <mat-label>Leader Name</mat-label>
             <input matInput placeholder="Peter Richarson" formControlName="leader" required minlength="8">
         </mat-form-field>
     </div>
     <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
         <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Group Code</mat-label>
+            <mat-label>Code</mat-label>
             <input matInput placeholder="RDB2021MKR" formControlName="code" required minlength="7" maxlength="10">
         </mat-form-field>
     </div>
     <div class="px-4 py-2 flex-col grid justify-items-center border-t border-b">
         <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Group Initial Password</mat-label>
-            <input matInput placeholder="***********" formControlName="password" required minlength="5" maxlength="15">
+            <mat-label>Password</mat-label>
+            <input [type]="hide ? 'password' : 'text'" matInput placeholder="***********" formControlName="password" required minlength="5" maxlength="15">
+            <mat-icon matSuffix (click)="hide = !hide" class="cursor-pointer">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
     </div>
     <div class="grid justify-items-end my-2 ">

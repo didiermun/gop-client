@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  hide: boolean = false;
+  hide: boolean = true;
 
   constructor(private apollo: Apollo,private router: Router,private _snackBar: MatSnackBar,private _formBuilder: FormBuilder) { }
 

@@ -28,6 +28,7 @@ export class NewGroupComponent implements OnInit {
   loading: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  hide: boolean = true;
 
   constructor(private _formBuilder: FormBuilder,private _snackBar: MatSnackBar,private apollo: Apollo,private router: Router) { }
 
