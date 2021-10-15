@@ -8,14 +8,24 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isloggedIn: boolean =  true;
+
+  constructor(private router: Router) {
+   }
   logout(){
     localStorage.removeItem('gop_app_token');
     console.log(this.router.url);
     this.router.navigateByUrl("/")
+    this.isloggedIn = false;
   }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('gop_app_token')){
+      this.isloggedIn = false;
+    }
+    else{
+      this.isloggedIn = true;
+    }
   }
 
 }
